@@ -1,0 +1,228 @@
+Invoking MCP tool get_drug_interactions_for_gene_list with input {"gene_names":"BIRC5,ERBB2,ERBB4,PIK3CA,PTEN"}
+MCP tool get_drug_interactions_for_gene_list returned meta=None content=[TextContent(type='text', text='{
+  "BIRC5": [
+    {
+      "drug": {
+        "name": "VALDECOXIB",
+        "approved": true
+      },
+      "interactionScore": 0.3954833224157995,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "OMACETAXINE MEPESUCCINATE",
+        "approved": true
+      },
+      "interactionScore": 0.2372899934494796,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "ROFECOXIB",
+        "approved": true
+      },
+      "interactionScore": 0.1977416612078997,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "CALCITONIN",
+        "approved": true
+      },
+      "interactionScore": 0.1977416612078997,
+      "interactionTypes": []
+    }
+  ],
+  "ERBB2": [
+    {
+      "drug": {
+        "name": "NERATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.5686688296174894,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "PERTUZUMAB",
+        "approved": true
+      },
+      "interactionScore": 0.4691517844344287,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        },
+        {
+          "type": "antibody",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "TRASTUZUMAB",
+        "approved": true
+      },
+      "interactionScore": 0.4675721487966024,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        },
+        {
+          "type": "antibody",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "DACOMITINIB ANHYDROUS",
+        "approved": true
+      },
+      "interactionScore": 0.4549350636939915,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    }
+  ],
+  "ERBB4": [
+    {
+      "drug": {
+        "name": "DACOMITINIB ANHYDROUS",
+        "approved": true
+      },
+      "interactionScore": 0.7500545769954817,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "AFATINIB DIMALEATE",
+        "approved": true
+      },
+      "interactionScore": 0.3000218307981927,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "NERATINIB MALEATE",
+        "approved": true
+      },
+      "interactionScore": 0.3000218307981927,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "LAPATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.1742062243344344,
+      "interactionTypes": []
+    }
+  ],
+  "PIK3CA": [
+    {
+      "drug": {
+        "name": "INAVOLISIB",
+        "approved": true
+      },
+      "interactionScore": 0.4856167307803304,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "ALPELISIB",
+        "approved": true
+      },
+      "interactionScore": 0.2900211031049196,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "CAPIVASERTIB",
+        "approved": true
+      },
+      "interactionScore": 0.2670892019291817,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TEMSIROLIMUS",
+        "approved": true
+      },
+      "interactionScore": 0.1780594679527878,
+      "interactionTypes": []
+    }
+  ],
+  "PTEN": [
+    {
+      "drug": {
+        "name": "CAPIVASERTIB",
+        "approved": true
+      },
+      "interactionScore": 0.311148468231768,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "CAPMATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.2304803468383467,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TEMSIROLIMUS",
+        "approved": true
+      },
+      "interactionScore": 0.1843842774706774,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "EVEROLIMUS",
+        "approved": true
+      },
+      "interactionScore": 0.17286026012876,
+      "interactionTypes": []
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+VALDECOXIB, OMACETAXINE MEPESUCCINATE, ROFECOXIB, CALCITONIN, NERATINIB, PERTUZUMAB, TRASTUZUMAB, DACOMITINIB ANHYDROUS, AFATINIB DIMALEATE, NERATINIB MALEATE, LAPATINIB, INAVOLISIB, ALPELISIB, CAPIVASERTIB, TEMSIROLIMUS, CAPMATINIB, EVEROLIMUS

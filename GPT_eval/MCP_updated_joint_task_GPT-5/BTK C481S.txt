@@ -1,0 +1,2024 @@
+Invoking MCP tool get_variant_evidence with input {"molecularProfileName": null, "diseaseName": "Chronic Lymphocytic Leukemia", "therapyName": "Ibrutinib", "significance": "RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Whole exome sequencing of 6 chronic lymphocytic leukemia patients with acquired resistance to ibrutinib determined 5/6 patients harbored a C481S mutation in BTK.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:436"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In a trial of 308 patients with chronic lymphocytic leukemia treated with ibrutinib, 31 discontinued treatment due to disease progression (13 CLL progression, 18 Richter’s transformation). 11/13 patients were deep sequenced for BTK and PLCG2. 9 patients were identified with BTK mutations (C481S in 8 patients). In 5 patients, C481S was the sole abnormality.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1770"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "T316A",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Case report of a patient with CLL and Richter-transformed relapse under ibrutinib (after an initial partial response for 10 months). Sequencing of sequential samples of this patient revealed a novel BTK T316 mutation at relapse (allele frequency of 75%). Characterization of this mutation showed that is was located on the SH2 domain, not associated with Ibrutinib binding. Introduction of this mutation in an Ibrutinib-sensitive lymphoma cell line showed resistance comparable to the known C481 resistance mutations, which was also confirmed by absence of downstream signaling.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1985"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_assertions with input {"molecularProfileName":null,"diseaseName":"Chronic Lymphocytic Leukemia","therapyName":"Ibrutinib","significance":"RESISTANCE"}
+MCP tool get_variant_assertions returned meta=None content=[TextContent(type='text', text='{
+  "errors": [
+    {
+      "message": "Variable $molecularProfileName of type String! was provided invalid value",
+      "locations": [
+        {
+          "line": 2,
+          "column": 22
+        }
+      ],
+      "extensions": {
+        "value": null,
+        "problems": [
+          {
+            "path": [],
+            "explanation": "Expected value to not be null"
+          }
+        ]
+      }
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"molecularProfileName":null,"diseaseName":"Chronic Lymphocytic Leukemia","therapyName":"Ibrutinib"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Whole exome sequencing of 6 chronic lymphocytic leukemia patients with acquired resistance to ibrutinib determined 5/6 patients harbored a C481S mutation in BTK.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:436"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In a trial of 308 patients with chronic lymphocytic leukemia treated with ibrutinib, 31 discontinued treatment due to disease progression (13 CLL progression, 18 Richter’s transformation). 11/13 patients were deep sequenced for BTK and PLCG2. 9 patients were identified with BTK mutations (C481S in 8 patients). In 5 patients, C481S was the sole abnormality.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1770"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "T316A",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Case report of a patient with CLL and Richter-transformed relapse under ibrutinib (after an initial partial response for 10 months). Sequencing of sequential samples of this patient revealed a novel BTK T316 mutation at relapse (allele frequency of 75%). Characterization of this mutation showed that is was located on the SH2 domain, not associated with Ibrutinib binding. Introduction of this mutation in an Ibrutinib-sensitive lymphoma cell line showed resistance comparable to the known C481 resistance mutations, which was also confirmed by absence of downstream signaling.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1985"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"therapyName":"Ibrutinib","significance":"RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Whole exome sequencing of 6 chronic lymphocytic leukemia patients with acquired resistance to ibrutinib determined 5/6 patients harbored a C481S mutation in BTK.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:436"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In a trial of 308 patients with chronic lymphocytic leukemia treated with ibrutinib, 31 discontinued treatment due to disease progression (13 CLL progression, 18 Richter’s transformation). 11/13 patients were deep sequenced for BTK and PLCG2. 9 patients were identified with BTK mutations (C481S in 8 patients). In 5 patients, C481S was the sole abnormality.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1770"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "T316A",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Case report of a patient with CLL and Richter-transformed relapse under ibrutinib (after an initial partial response for 10 months). Sequencing of sequential samples of this patient revealed a novel BTK T316 mutation at relapse (allele frequency of 75%). Characterization of this mutation showed that is was located on the SH2 domain, not associated with Ibrutinib binding. Introduction of this mutation in an Ibrutinib-sensitive lymphoma cell line showed resistance comparable to the known C481 resistance mutations, which was also confirmed by absence of downstream signaling.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1985"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "L2V",
+            "feature": {
+              "name": "PIM1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Diffuse Large B-cell Lymphoma Activated B-cell Type"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Foundation panel results of baseline tumour samples from 48 patients with diffuse large B cell lymphoma identified PIM1 mutations in 6 patient samples, 5 of which were the DLBCL-ABC subtype. Four out of the 5 DLBCL-ABC patients with PIM1 mutations had stable disease or progressive disease when treated with ibrutinib, suggesting innate resistance to ibrutinib therapy. Three PIM1 mutations L2V, P81S, and S97N were investigated in cell lines studies. Cells transduced with L2V, P81S, and S97N were resistant to ibrutinib compared to cells transduced with wild type PIM1. Combined treatment of PIM1 mutant lines with ibrutinib and a pan-PIM inhibitor, AZD-1208, partially rescued sensitivity to ibrutinib.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:9945"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "P81S",
+            "feature": {
+              "name": "PIM1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Diffuse Large B-cell Lymphoma Activated B-cell Type"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Foundation panel results of baseline tumour samples from 48 patients with diffuse large B cell lymphoma identified PIM1 mutations in 6 patient samples, 5 of which were the DLBCL-ABC subtype. Four out of the 5 DLBCL-ABC patients with PIM1 mutations had stable disease or progressive disease when treated with ibrutinib, suggesting innate resistance to ibrutinib therapy. Three PIM1 mutations L2V, P81S, and S97N were investigated in cell lines studies. Cells transduced with L2V, P81S, and S97N were resistant to ibrutinib compared to cells transduced with wild type PIM1. Combined treatment of PIM1 mutant lines with ibrutinib and a pan-PIM inhibitor, AZD-1208, partially rescued sensitivity to ibrutinib.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:9946"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "S97N",
+            "feature": {
+              "name": "PIM1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Diffuse Large B-cell Lymphoma Activated B-cell Type"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Foundation panel results of baseline tumour samples from 48 patients with diffuse large B cell lymphoma identified PIM1 mutations in 6 patient samples, 5 of which were the DLBCL-ABC subtype. Four out of the 5 DLBCL-ABC patients with PIM1 mutations had stable disease or progressive disease when treated with ibrutinib, suggesting innate resistance to ibrutinib therapy. Three PIM1 mutations L2V, P81S, and S97N were investigated in cell lines (TMD8) studies. Cells transduced with L2V, P81S, and S97N were resistant to ibrutinib compared to cells transduced with wild type PIM1. Combined treatment of PIM1 mutant lines with ibrutinib and a pan-PIM inhibitor, AZD-1208, partially rescued sensitivity to ibrutinib.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:9947"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"molecularProfileName":"PLCG2 R665W","diseaseName":"Chronic Lymphocytic Leukemia","therapyName":"Ibrutinib","significance":"RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"diseaseName":"Chronic Lymphocytic Leukemia","significance":"RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Whole exome sequencing of 6 chronic lymphocytic leukemia patients with acquired resistance to ibrutinib determined 5/6 patients harbored a C481S mutation in BTK.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:436"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481S",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In a trial of 308 patients with chronic lymphocytic leukemia treated with ibrutinib, 31 discontinued treatment due to disease progression (13 CLL progression, 18 Richter’s transformation). 11/13 patients were deep sequenced for BTK and PLCG2. 9 patients were identified with BTK mutations (C481S in 8 patients). In 5 patients, C481S was the sole abnormality.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1770"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study identified G101V mutation in BCL2 emerged in 7 out of 15 patients with CLL progression treated with Venetoclax. In addition, this study demonstrated that the G101V mutation impairs binding of venetoclax to BCL2, confers resistance to venetoclax in both patient leukemia cells and engineered cell lines, thus provides a selective growth advantage over WT cells when maintained in the presence of the drug in vitro.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8174"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101A",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in high-risk CLL post ibrutinib in \\"progressive CLL\\"",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8184"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "V156D",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). V156D mutation was identified in combination with other BCL2 mutations including G101V in 6 CLL patients with venetoclax resistance. V156D was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8306"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R107_R110dup",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). R107_R110dup mutation was identified in combination with other BCL2 mutations including G101V in 5 CLL patients with venetoclax resistance. R107_R110dup was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8309"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D103Y",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). D103Y mutation was identified in combination with other BCL2 mutations including G101V in 5 CLL patients with venetoclax resistance. D103Y was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "B",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8312"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "F104S",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in high-risk CLL post ibrutinib in \\"progressive CLL\\"",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8186"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "F104L",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in 2 high-risk CLL patients post ibrutinib in \\"progressive CLL\\"",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8187"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R107_R110dup",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in high-risk CLL patients post ibrutinib in 2 cases of \\"progressive CLL\\" and 1 case of Richter transformation",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8188"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "A113G",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in high-risk CLL post ibrutinib in \\"progressive CLL\\"",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8189"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "L119V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Associated with venetoclax resistance in high-risk CLL post ibrutinib in \\"progressive CLL\\"",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8190"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "DOES_NOT_SUPPORT",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "TP53"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In patients with relapsed/refractory chronic lymphocytic leukemia or small lymphocytic lymphoma, patients with deletion 17p and/or mutations in TP53 (N=24) were not more likely to have progressive disease when treated with venetoclax than wildtype patients (N=16)[Hazard ratio =1.23, 95% CI=0.34-4.41,p=0.752].",
+      "evidenceLevel": "B",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:6074"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "T316A",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Ibrutinib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Case report of a patient with CLL and Richter-transformed relapse under ibrutinib (after an initial partial response for 10 months). Sequencing of sequential samples of this patient revealed a novel BTK T316 mutation at relapse (allele frequency of 75%). Characterization of this mutation showed that is was located on the SH2 domain, not associated with Ibrutinib binding. Introduction of this mutation in an Ibrutinib-sensitive lymphoma cell line showed resistance comparable to the known C481 resistance mutations, which was also confirmed by absence of downstream signaling.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:1985"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Four of six heavily pretreated, high-risk CLL patients with a 17p deletion from the phase 2 trial M13-9824 with continuous venetoclax treatment, who were treated with venetoclax for a period longer than 3 years, developed progressive CLL.\
+\
+\
+\
+\
+Targeted sequencing found G101V in refractory CLL tissues in 3 out of 4 of the patients, but not in sequencing performed before venetoclax treatment. \
+\
+Indepth sequencing performed on one of the patients showed the variant allele fraction of G101V increasing from 9% to 16% during disease progression.\
+\
+Sequencing of 546 venetoclax-naive CLL patients was reported, and none had BCL2 G101V. The variant was also not observed in four patients who relapsed after time-limited venetoclax therapy. The authors suggest that time-restricted venetoclax treatment in combination with a second drug may lower risk of developing resistance variants.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:7970"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). The authors described multiple acquired resistance mutations including G101V in BCL-2 that occur in different CLL cells. The proportion of CLL cells harboring BCL2 G101V mutation ranged from a very minor subclone (0.1%) through to the majority of the CLL compartment (68.4%).",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:8305"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "DOES_NOT_SUPPORT",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Previous work by this group used WES and was unable to identify BCL2 G101V mutation in 9 CLL patients with resistance to venetoclax (PMID 29463802). Based on Tausch et al work (PMID 31004028), this group re-investigated the presence of BCL2 G101V mutation in their cohort using the method reported by Blombery et al (PMID 30517404). BCL2 G101V mutation was identified at very low allele frequency (from <1% to 1.4%) in three out of these 9 patients. In one of the patients, BCL2 G101V mutation is only present in two sites (BM and LN) but not in peripheral blood. This study argues against the hypothesis that the resistance to venetoclax can be explained by the BCL2 G101V mutation alone. Instead, this study propose that the BCL2 G101V mutation is a rather late, subclonal event that may mediate some resistance against CLL cells, but the mechanism of resistance to venetoclax remains far from being understood.",
+      "evidenceLevel": "C",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8303"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R129L",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). R129L mutation was identified in combination with other BCL2 mutations including G101V in 2 CLL patients with venetoclax resistance. R129L was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "C",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8307"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "A113G",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). A113G mutation was identified in combination with other BCL2 mutations including G101V in 3 CLL patients with venetoclax resistance. A113G was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "C",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8308"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D103V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). D103V mutation was identified in combination with other BCL2 mutations including G101V in 2 CLL patients with venetoclax resistance. D103V was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "C",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8310"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D103E",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study is a follow-up report after the original publication (PMID 30514704). D103E mutation was identified in combination with other BCL2 mutations including G101V in 4 CLL patients with venetoclax resistance. D103E was not observed in CLL patients without venetoclax treatment.",
+      "evidenceLevel": "C",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8311"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The effective cohort in this study was 11 CLL patients who were first treated with ibrutinib and then on progression treated with venetoclax until progression. Patient samples were sequenced before and after progression on venetoclax. The previously described BCL2 G101V mutation was observed in 1 patient at progression",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:8185"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D103Y",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study identified D103Y in one CLL patient with resistance to venetoclax. D103Y was presented in this patient after 39 months of venetoclax treatment in peripheral blood with a VAF of 7% which increased to 18 % at month 44. Patient cells from a later timepoint displayed the BCL2 G101V mutation in addition to D103Y. Of note the BCL2 G101V variant was not detectable at 39 months and only present at the latest time point with a VAF of 14%. Importantly, both BCL2 variants are on different reads, suggesting that they occur within two distinct subclones at different time points of onset and with different growth rates, possibly pointing to different degrees of clonal fitness.",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:8304"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "N571S",
+            "feature": {
+              "name": "PLCG2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The effective cohort in this study was 11 CLL patients who were first treated with ibrutinib and then on progression treated with venetoclax until progression. Patient samples were sequenced before and after progression on venetoclax. A patient (CLL10) with richter transformation showed increased frequency of PLCG2 N571S at relapse after 6 months on venetoclax.",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:10371"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D1140E",
+            "feature": {
+              "name": "PLCG2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The effective cohort in this study was 11 CLL patients who were first treated with ibrutinib and then on progression treated with venetoclax until progression. Patient samples were sequenced before and after progression on venetoclax. A patient (CLL11) with richter transformation showed increased frequency of PLCG2 D1140E at relapse after 4 months on venetoclax.",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:10372"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481Y",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The effective cohort in this study was 11 CLL patients who were first treated with ibrutinib and then on progression treated with venetoclax until progression. Patient samples were sequenced before and after progression on venetoclax. A patient (CLL07) showed increased frequency of BTK C481Y at relapse after 2 months on venetoclax in conjunction with loss of the BTK C418R variant",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:10373"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "DOES_NOT_SUPPORT",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C481R",
+            "feature": {
+              "name": "BTK"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The effective cohort in this study was 11 CLL patients who were first treated with ibrutinib and then on progression treated with venetoclax until progression. Patient samples were sequenced before and after progression on venetoclax. A patient (CLL07) showed increased frequency of BTK C481Y at relapse after 2 months on venetoclax in conjunction with loss of the BTK C418R variant",
+      "evidenceLevel": "C",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:10374"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R2459C",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2833"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Q984E",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2834"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Q1084*",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2836"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R2034P",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2838"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R777FS",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2842"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "V1268FS",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2844"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R1575H",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2847"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "A2274T",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In an in vitro study using primary chronic lymphocytic leukemia (CLL) cells from patients with mutated (n=8) and wildtype (n=5) ATM, inhibition of cell growth was used as an assay to determine sensitivity to doxorubicin treatment. Cells with ATM mutations demonstrated higher resistance to doxorubicin treatment when compared to those with wildtype ATM (P<0.001).",
+      "evidenceLevel": "D",
+      "evidenceRating": null,
+      "url": "https://identifiers.org/civic.eid:2848"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary cells from chronic lymphocytic leukemia patients were treated with doxorubicin to induce double-strand (DSB). In this setting, cells harboring rare ATM variants (n=8) had significantly higher viability, measured by mitochondrial dehydrogenase activity, compared to wildtype cells (n=8, p < 0.001) suggesting resistance. A qPCR functional assay showed that samples with rare ATM variants (n= 20) had significantly less p21 expression after treatment with doxorubicin compared to treated wildtype controls (n=31, p < 0.001). Furthermore, there was significantly decreased expression of BBC3, BAX, and GADD45 genes which are downstream of ATM in the DNA damage response. In the above studies, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for p21 induction to confirm wildtype p53.",
+      "evidenceLevel": "D",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:2222"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "T2666A",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. Cells were treated with doxorubicin to induce double-strand (DSB) and p21 induction was monitored by qPCR. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the T2666A variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 91% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2221"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "R3008C",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the R3008C variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. In a patient sample with the R3008C variant of ATM in trans with a wild-type allele, confirmed by sanger sequencing, western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance. The authors propose that this variant has a dominant-negative effect.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2223"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "c.902-1G>T",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "UNKNOWN",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the c.902-1G>T variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. In a patient sample with the c.902-1G>T variant of ATM, confirmed by sanger sequencing, western blot showed null ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance. The authors note that this patient had uniparental disomy of 11q.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2224"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "c.7089+1del",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the c.7089+1del variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the c.7089+1del variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 98% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2830"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "c.7515+1_2del",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the c.7515+1_2del variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the c.7515+1_2del variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 95% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2831"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "K293*",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the K293* variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the K293* variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 92% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2832"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "F1025L",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the F1025L variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the F1025L variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 93% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2835"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "E2187*",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the E2187* variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the E2187* variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 96% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2839"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "L2427P",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "UNKNOWN",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the L2427P variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the L2427P variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 94% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2840"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "F2732V",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the F2732V variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the F2732V variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 98% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2841"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D1682H",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the D1682H variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the D1682H variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 93% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2845"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "A2062V",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the A2062V variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the A2062V variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 87% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2846"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "C2488Y",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "RARE_GERMLINE",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the C2488Y variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the C2488Y variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 90% of cells by FISH. Western blot showed stable ATM expression. Treatment with doxorubicin resulted in a p21 expression level of less than 300% that of untreated wild-type controls. This was much lower than the median expression level of treated controls which was 815% that of untreated controls, supporting resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:2849"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study demonstrated that the G101V mutation impairs binding of venetoclax to BCL2, confers resistance to venetoclax in both patient leukemia cells and engineered cell lines, thus provides a selective growth advantage over WT cells when maintained in the presence of the drug in vitro.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8334"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D103E",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "The authors demonstrated that BCL2 Asp103Glu imparts resistance to venetoclax in vitro by investigating the in vitro binding profile of the Asp103Glu to both venetoclax and proapoptotic proteins in competition surface plasmon resonance binding experiments. BCL2 Asp103Glu was associated with a decrease in affinity for venetoclax of approximately 20-fold compared with the wild-type aspartic acid (Gly101Val showed an ~ 180-fold reduction).",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8335"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "G101V",
+            "feature": {
+              "name": "BCL2"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Venetoclax"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "This study described the similar crystal structures of BCL-2 wild-type and G101V when bound to venetoclax. Steady state competition surface plasmon resonance experiments demonstrated a ~177 fold decrease in venetoclax affinity for G101V (Ki=3.2nM) versus WT (Ki=.018nM). Resistance is acquired by a knock-on effect in the P2 pocket of V101 on an adjacent residue, E152 as affinity for venetoclax was restored in BCL2 G101V through the introduction of an E152A mutation (Ki =.002nM). Additionally, BCL2 G101V maintains similar affinity for apoptotic BH3 peptides, which assists in the prevention of apoptosis.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:8841"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "D1930V",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the D1930V variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the D1930V variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 88% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in p21 expression greater than 300% that of untreated wild-type controls. This was considered by the authors to be similar to treated wild-type controls with a median expression level 815% that of untreated controls suggesting this variant does not support resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:2837"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "DOES_NOT_SUPPORT",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "K468FS",
+            "feature": {
+              "name": "ATM"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Chronic Lymphocytic Leukemia"
+      },
+      "therapies": [
+        {
+          "name": "Doxorubicin"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Primary peripheral blood mononuclear cells were taken from chronic lymphocytic leukemia patients, some of whom had prior therapy. The effect of the K468FS variant on ATM expression was tested by western blot, and the effect on ATM function was tested by treating with doxorubicin to induce double-strand breaks (DSB) and monitoring p21 induction. To confirm wild type p53, parallel cell cultures were treated with fludarabine generating single-strand breaks, in addition to DSB, and monitored for adequate p21 induction. A patient sample had the K468FS variant of ATM, confirmed by sanger sequencing, in trans with a loss of function 11q deletion found in 91% of cells by FISH. Western blot showed null ATM expression. Treatment with doxorubicin resulted in p21 expression greater than 300% that of untreated wild-type controls. This was considered by the authors to be similar to treated wild-type controls with a median expression level 815% that of untreated controls suggesting this variant does not support resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:2843"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"diseaseName":"Chronic Lymphocytic Leukemia/small Lymphocytic Lymphoma","therapyName":"Ibrutinib","significance":"RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+BTK

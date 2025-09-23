@@ -1,0 +1,196 @@
+Invoking MCP tool get_drug_interactions_for_gene_list with input {"gene_names":"WT1,RUNX1,FLT3"}
+MCP tool get_drug_interactions_for_gene_list returned meta=None content=[TextContent(type='text', text='{
+  "WT1": [
+    {
+      "drug": {
+        "name": "DIMETHYL SULFOXIDE",
+        "approved": true
+      },
+      "interactionScore": 0.5019596015277455,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "DEFEROXAMINE",
+        "approved": true
+      },
+      "interactionScore": 0.4724325661437604,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "SIROLIMUS",
+        "approved": true
+      },
+      "interactionScore": 0.1384716142145504,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TRETINOIN",
+        "approved": true
+      },
+      "interactionScore": 0.1323849498534713,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "CURCUMIN",
+        "approved": true
+      },
+      "interactionScore": 0.1216871761279383,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "CYTARABINE",
+        "approved": true
+      },
+      "interactionScore": 0.05019596015277455,
+      "interactionTypes": []
+    }
+  ],
+  "RUNX1": [
+    {
+      "drug": {
+        "name": "METHACHOLINE CHLORIDE",
+        "approved": true
+      },
+      "interactionScore": 0.4971790338941478,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "PYROGALLOL",
+        "approved": true
+      },
+      "interactionScore": 0.09943580677882959,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TAMOXIFEN CITRATE",
+        "approved": true
+      },
+      "interactionScore": 0.07850195272012861,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "IMATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.04143158615784565,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "DISULFIRAM",
+        "approved": true
+      },
+      "interactionScore": 0.03468690934145218,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "CYTARABINE",
+        "approved": true
+      },
+      "interactionScore": 0.01864421377103054,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "DAUNORUBICIN LIPOSOMAL",
+        "approved": true
+      },
+      "interactionScore": 0.01639051760090597,
+      "interactionTypes": []
+    }
+  ],
+  "FLT3": [
+    {
+      "drug": {
+        "name": "QUIZARTINIB",
+        "approved": true
+      },
+      "interactionScore": 1.009648608779967,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "MIDOSTAURIN",
+        "approved": true
+      },
+      "interactionScore": 0.5660652855782768,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "GILTERITINIB",
+        "approved": true
+      },
+      "interactionScore": 0.5590768252624956,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "PONATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.3991485988051952,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "PACRITINIB",
+        "approved": true
+      },
+      "interactionScore": 0.2751706249338845,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "VENETOCLAX",
+        "approved": true
+      },
+      "interactionScore": 0.2001240908610069,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TIRBANIBULIN",
+        "approved": true
+      },
+      "interactionScore": 0.1886884285260922,
+      "interactionTypes": []
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+DIMETHYL SULFOXIDE,DEFEROXAMINE,SIROLIMUS,TRETINOIN,CURCUMIN,CYTARABINE,METHACHOLINE CHLORIDE,PYROGALLOL,TAMOXIFEN CITRATE,IMATINIB,DISULFIRAM,DAUNORUBICIN LIPOSOMAL,QUIZARTINIB,MIDOSTAURIN,GILTERITINIB,PONATINIB,PACRITINIB,VENETOCLAX,TIRBANIBULIN

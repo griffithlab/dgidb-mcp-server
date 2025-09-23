@@ -1,0 +1,216 @@
+Invoking MCP tool get_drug_interactions_for_gene_list with input {"gene_names":"BCL2,PLCG2,BTK"}
+MCP tool get_drug_interactions_for_gene_list returned meta=None content=[TextContent(type='text', text='{
+  "BCL2": [
+    {
+      "drug": {
+        "name": "TENIPOSIDE",
+        "approved": true
+      },
+      "interactionScore": 0.1414737088316681,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "EDARAVONE",
+        "approved": true
+      },
+      "interactionScore": 0.1273263379485013,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "ISOTRETINOIN",
+        "approved": true
+      },
+      "interactionScore": 0.1193684418267199,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "VENETOCLAX",
+        "approved": true
+      },
+      "interactionScore": 0.1157512163168193,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "ESTRAMUSTINE",
+        "approved": true
+      },
+      "interactionScore": 0.1157512163168193,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TAZAROTENE",
+        "approved": true
+      },
+      "interactionScore": 0.1157512163168193,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "SELENIUM",
+        "approved": true
+      },
+      "interactionScore": 0.1123467687780893,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "METHYLPREDNISOLONE",
+        "approved": true
+      },
+      "interactionScore": 0.106105281623751,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "FLOXURIDINE",
+        "approved": true
+      },
+      "interactionScore": 0.09094738424892951,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "RIBAVIRIN",
+        "approved": true
+      },
+      "interactionScore": 0.08376732759769821,
+      "interactionTypes": []
+    }
+  ],
+  "PLCG2": [
+    {
+      "drug": {
+        "name": "IBRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 4.606217519901664,
+      "interactionTypes": []
+    }
+  ],
+  "BTK": [
+    {
+      "drug": {
+        "name": "TIRABRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 1.003919203055491,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "ACALABRUTINIB MALEATE",
+        "approved": true
+      },
+      "interactionScore": 1.003919203055491,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "ZANUBRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 0.5019596015277455,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "PIRTOBRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 0.5019596015277455,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "IBRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 0.3838514599918053,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "RITLECITINIB TOSYLATE",
+        "approved": true
+      },
+      "interactionScore": 0.1673198671759151,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "RITLECITINIB",
+        "approved": true
+      },
+      "interactionScore": 0.1673198671759151,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "ACALABRUTINIB",
+        "approved": true
+      },
+      "interactionScore": 0.1181081415359401,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "DASATINIB ANHYDROUS",
+        "approved": true
+      },
+      "interactionScore": 0.02641892639619713,
+      "interactionTypes": []
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+TENIPOSIDE,EDARAVONE,ISOTRETINOIN,VENETOCLAX,ESTRAMUSTINE,TAZAROTENE,SELENIUM,METHYLPREDNISOLONE,FLOXURIDINE,RIBAVIRIN,IBRUTINIB,TIRABRUTINIB,ACALABRUTINIB MALEATE,ZANUBRUTINIB,PIRTOBRUTINIB,RITLECITINIB TOSYLATE,RITLECITINIB,ACALABRUTINIB,DASATINIB ANHYDROUS

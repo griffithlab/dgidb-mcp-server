@@ -2,12 +2,68 @@ import { McpAgent } from "agents/mcp";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-export interface Interaction {
-  /** Raw interaction score from the API (may be missing). */
-  interactionScore?: number;
-  /** Any additional fields returned by the API. */
-  [key: string]: unknown;
+import { findBestMatch } from 'string-similarity'
+
+import rawDrugMap  from "./data/CIViC_therapy_name_map.json";
+import rawGeneMap  from "./data/VICC_gene_alias_map.json";
+
+export const dDrugMap: Record<string, string[]>  = rawDrugMap  as Record<string, string[]>;
+export const dGeneMap: Record<string, string[]>  = rawGeneMap  as Record<string, string[]>;
+
+function normalizeStr(s: string): string {
+  return s
+    .normalize('NFKD')                   // decompose accents
+    .replace(/[\u0300-\u036f]/g, '')     // strip diacritics
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')        // keep only letters, digits, spaces
+    .replace(/\s+/g, ' ')                // collapse runs of spaces
+    .trim()
 }
+
+/**
+ * Map a free‑form name to its primary alias via fuzzy matching.
+ *
+ * @param name      Input string (may be undefined or null)
+ * @param lookup    Record<primary, aliases[]>
+ * @param threshold Minimum similarity (0–1) to accept a match
+ * @returns         The matched primary string, or undefined if below threshold or name missing
+ */
+export function normalizeEntity(
+  name: string | undefined | null,
+  lookup: Record<string, string[]>,
+  threshold: number = 0.7
+): string | undefined {
+  if (!name) {
+    return undefined
+  }
+
+  const qNorm = normalizeStr(name)
+
+  // Build a map from normalized‑alias → primary
+  const aliasToPrimary: Record<string, string> = {}
+  for (const [primary, aliases] of Object.entries(lookup)) {
+    aliasToPrimary[normalizeStr(primary)] = primary
+    for (const alias of aliases) {
+      aliasToPrimary[normalizeStr(alias)] = primary
+    }
+  }
+
+  const candidates = Object.keys(aliasToPrimary)
+  const { bestMatch } = findBestMatch(qNorm, candidates)
+
+  return bestMatch.rating >= threshold
+    ? aliasToPrimary[bestMatch.target]
+    : undefined
+}
+
+export type InteractionType = { type?: string; directionality?: string };
+export type Interaction = {
+  interactionScore?: number | null;
+  interactionTypes?: InteractionType[];
+  gene?: { name?: string | null } | null;
+  drug?: { name?: string | null; approved?: boolean | null } | null;
+};
+export type DrugNode = { name: string; interactions: Interaction[] };
 
 export interface GeneNode {
   /** Gene (or molecular profile) name. */
@@ -18,10 +74,10 @@ export interface GeneNode {
   [key: string]: unknown;
 }
 
-/* ---------- 1. filterInteractionScore ---------- */
-
 /**
- * Return the top N interactions sorted by highest `interactionScore`.
+ * Return up to N interactions with:
+ *  1) approved drugs first (drug.approved === true)
+ *  2) then by highest interactionScore (desc)
  *
  * @param interactions - Array of interaction objects.
  * @param N            - Maximum number to return (default 20).
@@ -30,45 +86,116 @@ export function filterInteractionScore(
   interactions: Interaction[],
   N = 20
 ): Interaction[] {
-  return [...interactions]                                  // copy so caller’s array stays untouched
-    .sort(
-      (a, b) =>
-        (b.interactionScore ?? 0) - (a.interactionScore ?? 0)
-    )
+  return [...interactions]
+    .sort((a, b) => {
+      const aApproved = !!a.drug?.approved;
+      const bApproved = !!b.drug?.approved;
+
+      // Primary: approved first
+      if (aApproved !== bApproved) {
+        return aApproved ? -1 : 1;
+      }
+
+      // Secondary: higher interactionScore first
+      const aScore = a.interactionScore ?? 0;
+      const bScore = b.interactionScore ?? 0;
+      return bScore - aScore;
+    })
     .slice(0, N);
 }
 
-/* ---------- 2. findBestNode ---------- */
+/** Exact (case-insensitive) match wins; otherwise pick the node that contains the term and has the most interactions. */
+export function findBestNode(nodes: DrugNode[], term: string): DrugNode | undefined {
+  const t = term.toLowerCase();
 
-/**
- * Pick the “best” node, preferring an exact (case‑insensitive) name match;
- * otherwise return the node with the most interactions.
- *
- * @param nodes - Array of gene nodes.
- * @param term  - Name to match against `node.name`.
- * @returns     - The best‐matching node, or `undefined` if `nodes` is empty.
- */
-export function findBestNode(
-  nodes: GeneNode[],
-  term: string
-): GeneNode | undefined {
-  if (nodes.length === 0) return undefined;
+  // 1) exact match first
+  const exact = nodes.find(n => n.name.toLowerCase() === t);
+  if (exact) return exact;
 
-  const lowerTerm = term.toLowerCase();
-  let bestNode: GeneNode = nodes[0];
-  let largestSize = bestNode.interactions.length;
-
-  for (const node of nodes) {
-    // 1) Exact case‑insensitive match wins immediately
-    if (node.name.toLowerCase() === lowerTerm) return node;
-
-    // 2) Otherwise keep track of the node with the most interactions
-    if (node.interactions.length > largestSize) {
-      bestNode = node;
-      largestSize = node.interactions.length;
+  // 2) longest node by interactions among substring matches
+  let best: DrugNode | undefined;
+  let bestLen = -1;
+  for (const n of nodes) {
+    if (n.name.toLowerCase().includes(t)) {
+      const L = n.interactions?.length ?? 0;
+      if (L > bestLen) {
+        best = n;
+        bestLen = L;
+      }
     }
   }
-  return bestNode;
+  return best;
+}
+
+/**
+ * Fair-share allocation of a total budget across names based on available counts.
+ * Ascending pass; each gets at most avg remaining (floor), capped by its available count.
+ */
+export function distributeNodes(
+  dNodeLens: Record<string, number>,
+  total = 100
+): Record<string, number> {
+  const entries = Object.entries(dNodeLens).sort((a, b) => a[1] - b[1]); // ascending
+  const out: Record<string, number> = {};
+  let i = 0;
+  const num = entries.length;
+
+  for (const [key, val] of entries) {
+    const allowed = Math.floor(total / (num - i)) || 0;
+    const curr = Math.min(val, Math.max(allowed, 0));
+    out[key] = curr;
+    total -= curr;
+    i += 1;
+  }
+  return out;
+}
+
+/** Approved drugs first, then highest interactionScore (desc). Missing → approved=false, score=0. */
+export function filterAndSort(interactions: Interaction[], N = 20): Interaction[] {
+  return [...(interactions ?? [])]
+    .sort((a, b) => {
+      const aApproved = !!a.drug?.approved;
+      const bApproved = !!b.drug?.approved;
+      if (aApproved !== bApproved) return aApproved ? -1 : 1; // approved first
+
+      const aScore = a.interactionScore ?? 0;
+      const bScore = b.interactionScore ?? 0;
+      return bScore - aScore; // desc
+    })
+    .slice(0, N);
+}
+
+/**
+ * For each requested name:
+ *  - choose best node (exact > longest substring)
+ *  - budget interactions across names (distributeNodes)
+ *  - apply filterAndSort per name with that budget
+ * Returns map: requested name → filtered interactions[]
+ */
+export function selectNodes(
+  nodes: DrugNode[],
+  normalizedNames: string[],
+  totalBudget: number
+): Record<string, Interaction[]> {
+  const counts: Record<string, number> = {};
+  const chosen: Record<string, DrugNode> = {};
+
+  for (const name of normalizedNames) {
+    const node = findBestNode(nodes, name);
+    if (!node) continue;
+    chosen[name] = node;
+    counts[name] = node.interactions?.length ?? 0;
+  }
+
+  const allocations = distributeNodes(counts, totalBudget);
+
+  const out: Record<string, Interaction[]> = {};
+  for (const name of Object.keys(allocations)) {
+    const node = chosen[name];
+    const N = allocations[name] ?? 0;
+    out[name] = filterAndSort(node?.interactions ?? [], N);
+  }
+  return out;
 }
 
 // ========================================
@@ -99,9 +226,9 @@ export const API_CONFIG = {
 
 export const tools = {
   getGeneInteractionsForDrug: {
-    name: "get_gene_interactions_for_drug",
+    name: "get_gene_interactions_for_drug_list",
     description:
-      "Return up to 20 genes that interact with the provided drug",
+      "Return up to 100 total gene interactions across 1+ drugs; approved first, then highest interaction score.",
     inputSchema: {drugName: z.string()},
     annotations: {
       destructive: false,
@@ -117,76 +244,69 @@ export const tools = {
 	) {
 
 		const query = /* GraphQL */ `
-			query drugs($name: String!) {
-				drugs(name: $name) {
-				nodes {
-					name
-					interactions {
-						gene {
-							name
-						}
-						interactionScore
-						interactionTypes {
-							type
-							directionality
-						}
-					}
-				}
-			}
-			}`;
+			query drugs($names: [String!]) {
+        drugs(names: $names) {
+          nodes {
+              name
+              interactions {
+                  gene {
+                      name
+                  }
+                  interactionScore
+                  interactionTypes {
+                      type
+                      directionality
+                  }
+              }
+          }
+        }
+      }`;
 
-			const res = await fetch("https://dgidb.org/api/graphql", {
-					method: "POST",
-					headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
-					body: JSON.stringify({ query, variables: { name: drugName } })
-				}).then(r => r.json()) as {
-					data?: { drugs?: { nodes: { name: string; interactions: any[] }[] } };
-					errors?: unknown[];
-				};
 
-			// ✅ If no data, wrap in a content-based return for MCP compliance
-			if (!res.data?.drugs) {
-				return {
-				isError: true,
-				content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
-				};
-			}
+    const rawNames = drugName.split(",").map(s => s.trim()).filter(Boolean);
+    // Call normalizeEntity(rawName, dDrugMap, 0.7). Fallback to raw if it returns falsy.
+    const normalizedNames = rawNames.map(raw =>
+      normalizeEntity(raw, dDrugMap, 0.7) || raw
+    );
+    const totalBudget = normalizedNames.length === 1 ? 40 : 100;
 
-			const nodes = res.data.drugs.nodes ?? [];
-			const selectedNode = findBestNode(nodes, drugName);
+    const res = await fetch("https://dgidb.org/api/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
+      body: JSON.stringify({ query, variables: { names: normalizedNames } })
+    }).then(r => r.json()) as {
+      data?: { drugs?: { nodes?: DrugNode[] } };
+      errors?: unknown[];
+    };
 
-			if (!selectedNode) {
-				return {
-				isError: true,
-				content: [
-					{ type: "text" as const, text: `No drug node found for "${drugName}".` }
-			]
-			};
-		}
+    if (!res.data?.drugs?.nodes) {
+      return {
+        isError: true,
+        content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
+      };
+    }
 
-		const filtered = filterInteractionScore(selectedNode.interactions, 10);
+    const nodes = res.data.drugs.nodes;
+    if (!nodes.length) {
+      return {
+        isError: true,
+        content: [{ type: "text" as const, text: `No drug nodes found for: ${normalizedNames.join(", ")}` }]
+      };
+    }
 
-		//selectedNode.interactions = filterInteractionScore(selectedNode.interactions, 10);
+    const payload = selectNodes(nodes, normalizedNames, totalBudget);
 
-		return {
-			content: [
-			{ type: "text" as const, text: JSON.stringify({
-				drug:        selectedNode.name, // keep if you want the name
-				interactions: filtered          // just the top‑10 interactions
-				}, null, 2) }
-			],
-			_meta: {
-			interaction_count: selectedNode.interactions.length,
-			total_nodes: nodes.length
-			}
-		};
+    return {
+      isError: false,
+      content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }]
+    };
 	},
 }, 
 
   getDrugInteractionsForGene: {
-    name: "get_drug_interactions_for_gene",
+    name: "get_drug_interactions_for_gene_list",
     description:
-      "Return up to 20 drugs that interact with the provided gene",
+      "Return up to 100 drugs that interact with the provided gene list",
     inputSchema: {geneName: z.string()},
     annotations: {
       destructive: false,
@@ -202,23 +322,31 @@ export const tools = {
 	) {
 
 		const query = /* GraphQL */ `
-			query genes($name: String!) {
-				genes(name: $name) {
-					nodes {
-						name
-						interactions {
-							drug {
-								name
-							}
-							interactionScore
-							interactionTypes {
-								type
-								directionality
-							}
-						}
-					}
-				}
-			}`;
+      query genes($names: [String!]) {
+          genes(names: $names) {
+              nodes {
+                  name
+                  interactions {
+                      drug {
+                          name
+                          approved
+                      }
+                      interactionScore
+                      interactionTypes {
+                          type
+                          directionality
+                      }
+
+                  }
+              }
+          }
+      }`;
+
+      const rawNames = geneName.split(",").map(s => s.trim()).filter(Boolean);
+      const normalizedNames = rawNames.map(raw =>
+        normalizeEntity(raw, dGeneMap, 0.7) || raw
+      );
+      const totalBudget = normalizedNames.length === 1 ? 40 : 100;
 
 			const res = await fetch("https://dgidb.org/api/graphql", {
 				method: "POST",
@@ -238,33 +366,20 @@ export const tools = {
 		}
 
 		const nodes = res.data.genes.nodes ?? [];
-		const selectedNode = findBestNode(nodes, geneName);
 
-		if (!selectedNode) {
-			return {
-			isError: true,
-			content: [
-				{ type: "text" as const, text: `No gene node found for "${geneName}".` }
-		]
-		};
-	}
+    if (!nodes.length) {
+      return {
+        isError: true,
+        content: [{ type: "text" as const, text: `No gene nodes found for: ${normalizedNames.join(", ")}` }]
+      };
+    }
 
-	//selectedNode.interactions = filterInteractionScore(selectedNode.interactions, 10);
+    const payload = selectNodes(nodes, normalizedNames, totalBudget);
 
-	const filtered = filterInteractionScore(selectedNode.interactions, 10);
-
-	return {
-		content: [
-		{ type: "text" as const, text: JSON.stringify({
-          gene:        selectedNode.name, // keep if you want the name
-          interactions: filtered          // just the top‑10 interactions
-        }, null, 2) }
-		],
-		_meta: {
-		interaction_count: selectedNode.interactions.length,
-		total_nodes: nodes.length
-		}
-	};
+    return {
+      isError: false,
+      content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }]
+    };
 	},
 	},
 
@@ -314,7 +429,6 @@ interface ExecutionContext {
   waitUntil(promise: Promise<unknown>): void;
   passThroughOnException(): void;
 }
-
 
 
 export default {

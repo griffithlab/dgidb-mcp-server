@@ -1,0 +1,196 @@
+Invoking MCP tool get_drug_interactions_for_gene_list with input {"gene_names":"NRAS,HRAS,KRAS"}
+MCP tool get_drug_interactions_for_gene_list returned meta=None content=[TextContent(type='text', text='{
+  "NRAS": [
+    {
+      "drug": {
+        "name": "SOTORASIB",
+        "approved": true
+      },
+      "interactionScore": 0.3954833224157995,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "BINIMETINIB",
+        "approved": true
+      },
+      "interactionScore": 0.3757091562950095,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TRAMETINIB DIMETHYL SULFOXIDE",
+        "approved": true
+      },
+      "interactionScore": 0.3702397060913868,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "ENCORAFENIB",
+        "approved": true
+      },
+      "interactionScore": 0.2636555482771996,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "PANITUMUMAB",
+        "approved": true
+      },
+      "interactionScore": 0.2372899934494796,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "VEMURAFENIB",
+        "approved": true
+      },
+      "interactionScore": 0.2030860304297349,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TORIPALIMAB-TPZI",
+        "approved": true
+      },
+      "interactionScore": 0.1977416612078997,
+      "interactionTypes": []
+    }
+  ],
+  "HRAS": [
+    {
+      "drug": {
+        "name": "SOTORASIB",
+        "approved": true
+      },
+      "interactionScore": 0.4193076189468717,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "PRALSETINIB",
+        "approved": true
+      },
+      "interactionScore": 0.179703265262945,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "TRAMETINIB DIMETHYL SULFOXIDE",
+        "approved": true
+      },
+      "interactionScore": 0.1472037385664549,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "LORLATINIB",
+        "approved": true
+      },
+      "interactionScore": 0.145144945020071,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "VITAMIN E",
+        "approved": true
+      },
+      "interactionScore": 0.1179302678288076,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "SELUMETINIB",
+        "approved": true
+      },
+      "interactionScore": 0.1143566233491468,
+      "interactionTypes": []
+    }
+  ],
+  "KRAS": [
+    {
+      "drug": {
+        "name": "PANITUMUMAB",
+        "approved": true
+      },
+      "interactionScore": 0.9788212229791036,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "ADAGRASIB",
+        "approved": true
+      },
+      "interactionScore": 0.8156843524825864,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "GLECAPREVIR",
+        "approved": true
+      },
+      "interactionScore": 0.5437895683217243,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "SOTORASIB",
+        "approved": true
+      },
+      "interactionScore": 0.5437895683217243,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "SIMEPREVIR SODIUM",
+        "approved": true
+      },
+      "interactionScore": 0.5437895683217243,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    },
+    {
+      "drug": {
+        "name": "CETUXIMAB",
+        "approved": true
+      },
+      "interactionScore": 0.5290925529616777,
+      "interactionTypes": []
+    },
+    {
+      "drug": {
+        "name": "GRAZOPREVIR",
+        "approved": true
+      },
+      "interactionScore": 0.2718947841608621,
+      "interactionTypes": [
+        {
+          "type": "inhibitor",
+          "directionality": "INHIBITORY"
+        }
+      ]
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+SOTORASIB,BINIMETINIB,TRAMETINIB DIMETHYL SULFOXIDE,ENCORAFENIB,PANITUMUMAB,VEMURAFENIB,TORIPALIMAB-TPZI,PRALSETINIB,LORLATINIB,VITAMIN E,SELUMETINIB,ADAGRASIB,GLECAPREVIR,SIMEPREVIR SODIUM,CETUXIMAB,GRAZOPREVIR

@@ -1,0 +1,559 @@
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Cancer", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Carcinoma", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "High Grade Serous Ovarian Carcinoma", "significance": "RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Overexpression",
+            "feature": {
+              "name": "CCNE1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Ovarian Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "The effect of high CCNE1 expression on PD0332991 (palbociclib) sensitivity was observed in cell lines.  One PD0332991 sensitive cell line, HEY, was engineered to constitutively express CCNE1 (HEY-CCNE1).  HEY-CCNE1 was shown to have significantly increased resistance to PD0332991.  CCNE1-amplified OVCAR3 cells were also resistant to PD0332991.  50-70% reduction of CCNE1 via lentiviral shRNAs sensitized OVCAR3 cells to PD0332991.  These combined results suggest high CCNE1 expression is required for resistance to PD0332991.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:7792"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_assertions with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Cancer", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_assertions with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Carcinoma", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_assertions with input {"therapyName": "Palbociclib", "diseaseName": "High Grade Serous Ovarian Carcinoma", "significance": "RESISTANCE"}
+MCP tool get_variant_assertions returned meta=None content=[TextContent(type='text', text='{
+  "errors": [
+    {
+      "message": "Variable $molecularProfileName of type String! was provided invalid value",
+      "locations": [
+        {
+          "line": 2,
+          "column": 22
+        }
+      ],
+      "extensions": {
+        "value": null,
+        "problems": [
+          {
+            "path": [],
+            "explanation": "Expected value to not be null"
+          }
+        ]
+      }
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_assertions returned meta=None content=[TextContent(type='text', text='{
+  "errors": [
+    {
+      "message": "Variable $molecularProfileName of type String! was provided invalid value",
+      "locations": [
+        {
+          "line": 2,
+          "column": 22
+        }
+      ],
+      "extensions": {
+        "value": null,
+        "problems": [
+          {
+            "path": [],
+            "explanation": "Expected value to not be null"
+          }
+        ]
+      }
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_assertions returned meta=None content=[TextContent(type='text', text='{
+  "errors": [
+    {
+      "message": "Variable $molecularProfileName of type String! was provided invalid value",
+      "locations": [
+        {
+          "line": 2,
+          "column": 22
+        }
+      ],
+      "extensions": {
+        "value": null,
+        "problems": [
+          {
+            "path": [],
+            "explanation": "Expected value to not be null"
+          }
+        ]
+      }
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"therapyName":"Palbociclib","significance":"RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": [
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "PIK3CA"
+            }
+          },
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "RB1"
+            }
+          },
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "ESR1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Fulvestrant"
+        },
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In this phase III trial (PALOMA-3), patients with ER+, HER2- advanced breast cancer were treated with CDK4/6 inhibitors. Patients were randomized to receive palbociclib plus fulvestrant (P+F) or placebo plus fulvestrant (F). A paired ctDNA exome sequencing was conducted to analyze clonal composition. RB1 mutations were identified in 6/127 patients (p=0.041), part of the P + F arm, while no RB1 mutations were identified in the patients treated with fulvestrant alone, at EOT (end of treatment). ESR1 mutations were noted in 25.1% at day 1, and 31.3% of the patients at EOT. An increased proportion of PIK3CA mutations were noted at EOT compared to day 1  (19% v/s 26.7%; p = 0.00069). Additionally, the proportions of patients with new PIK3CA mutations did not differ between the two treatment groups, which suggests that these mutations may play a role in fulvestrant resistance. Strong evidence was reported for positive selection for ESR1 Y537S through the treatment in both treatment groups (p=0.0037), suggesting this mutation may promote resistance to fulvestrant. The data also indicates that resistance to fulvestrant may be a major genetic driver of resistance to the combination treatment.",
+      "evidenceLevel": "B",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:12045"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "DOES_NOT_SUPPORT",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Loss",
+            "feature": {
+              "name": "CDKN2A"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Lung Non-small Cell Carcinoma"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "TAPUR, a phase II basket trial, included a cohort of patients with advanced non-small lung cell carcinoma (NSCLC) harboring with CDKN2A loss or mutation and no RB mutations. Twenty-nine patients were treated with CDK4/6 inhibitor palbociclib; one experienced a partial response and 6 experienced stable disease lasting longer than 16 weeks (disease control rate: 29%). Median PFS was 7.9 weeks and median OS was 20.6 weeks. Authors concluded that palbociclib is worthy of further study in advanced NSCLC when standard treatment options aren\'t available.",
+      "evidenceLevel": "B",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:7444"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Mutation",
+            "feature": {
+              "name": "RB1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        },
+        {
+          "name": "Ribociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Three patients with hormone receptor positive metastastic breast cancer, treated with letrozol/ribociclib or fulvestrant/palbociclib, underwent RB1 gene sequencing before, during and after acquiring resistance to therapy. ctDNA analyses revealed the emergence of RB1 mutations after but not before progression on CDK4/6 Inhibitors.",
+      "evidenceLevel": "C",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:6097"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "p16 Expression",
+            "feature": {
+              "name": "CDKN2A"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Sarcoma"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "A preclinical study to explore the efficacy of CDK4/6 inhibition with palbociclib, in a panel of sarcoma cell lines and sarcoma tumor xenografts (PDXs). The responsiveness of these cell lines/PDX correlated with CDK4 mRNA levels but not in those showing high p16ink4a. High levels of CDKN2A predicted poorer efficacy.",
+      "evidenceLevel": "D",
+      "evidenceRating": 4,
+      "url": "https://identifiers.org/civic.eid:4873"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Loss-of-function",
+            "feature": {
+              "name": "RB1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "In 3 ER positive and 2 ER negative breast cancer cell lines with intact Rb, significant growth inhibition, as measured by BrdU incorporation, was seen with incubation in CDK4/6 inhibitor palbociclib (PD-0332991). In contrast, two ER negative cell lines lacking detectable Rb were fully resistant to palbociclib. Knockdown of Rb in 3 of the tested Rb positive cell lines led to moderate palbociclib resistance in short term incubation experiments. \
+In longer term (15 day) palbociclib incubations of ER negative MDA-MB-231 cells and ER positive MCF-7 cells, significant resistance to palbociclib was seen in Rb knockdown conditions while wild-type Rb cells maintained sensitivity.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:1535"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Loss-of-function",
+            "feature": {
+              "name": "RB1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Glioblastoma"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "A panel of 21 glioblastoma cell lines harboring various mutations was treated with palbociclib. 16 of the cell lines with intact Rb showed decreased proliferation (bromodeoxyuridine incorporation, BrdU flow cytometry) and growth arrest characteristic of senescence, while the 5 cell lines that did not show a palbociclib response had homozygous deletion of Rb. Rb positive and palbociclib responsive GBM cell line U87MG was treated with shRNA against Rb. shRb treated cells showed restoration of cell proliferation (BrdU incorporation) under palbociclib treatment, indicating resistance.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:1595"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Amplification",
+            "feature": {
+              "name": "CCNE1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Estrogen-receptor Positive Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "Preclinical study in breast cancer cell lines treated with CDK4/6 inhibitor palbociclib. Cell lines with acquired resistance to palbociclib were developed. Two palbociclib-resistant cell lines were derived through chronic exposure to 1 μmol/L palbociclib during 3 to 4 months. Copy number profiling from exome sequencing of MCF-7 and MCF-7pR, confirmed relative amplification of CCNE1. Silencing of CCNE1 or CDK2 alone in MCF-7pR cells had no effect on cell-cycle arrest, but resulted in substantially increased cell-cycle arrest and reduction in cell growth in combination with palbociclib.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:1629"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Overexpression",
+            "feature": {
+              "name": "CDK4"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Alveolar Rhabdomyosarcoma"
+      },
+      "therapies": [
+        {
+          "name": "Ribociclib"
+        },
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "Analysis of the antiproliferative effects of\
+pharmacologic CDK4/6 inhibitors provided initial evidence of this notion, as lowest CDK4-\
+expressing Rh28 cells showed the highest sensitivity to both LEE011 and PD0332991, while\
+highest CDK4-expressing Rh30 cells exhibited the lowest sensitivity. Moreover, rescue of cell\
+viability upon overexpression of CDK4 in Rh41 and Rh28 cells treated with LEE011 indicated\
+that elevated CDK4 expression confers decreased sensitivity to CDK4/6 inhibition. Our in vivo\
+results of robust LEE011 activity in Rh28-derived xenograft tumors compared to more modest,\
+albeit statistically significant, antitumor effects in Rh30-derived xenografts further support this\
+finding.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:7138"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Overexpression",
+            "feature": {
+              "name": "CCNE1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Ovarian Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "The effect of high CCNE1 expression on PD0332991 (palbociclib) sensitivity was observed in cell lines.  One PD0332991 sensitive cell line, HEY, was engineered to constitutively express CCNE1 (HEY-CCNE1).  HEY-CCNE1 was shown to have significantly increased resistance to PD0332991.  CCNE1-amplified OVCAR3 cells were also resistant to PD0332991.  50-70% reduction of CCNE1 via lentiviral shRNAs sensitized OVCAR3 cells to PD0332991.  These combined results suggest high CCNE1 expression is required for resistance to PD0332991.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:7792"
+    },
+    {
+      "status": "SUBMITTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "Overexpression",
+            "feature": {
+              "name": "CCNE1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "NA",
+      "description": "Breast cancer cell lines derived from T-47D (vector control, overexpress cyclin E1, overexpress cyclin E2) were treated with CDK4/6 inhibitor PD0332991 and CDK2 inhibitor SNS-032 as single agents and in combination. Single agent treatment with PD0332991 in cyclin E1- or cyclin E2–overexpressing cells showed to be ineffective at reducing the relative cell number and bromodeoxyuridine (BrdU) incorporation assay in comparison to the vector control cells; thus indicating resistance to CDK4/6 inhibitor PD033299. However, combination of PD0332991 and SNS-032 reduced BrdURd incorporation and relative cell number compared to single agents. This effect of combinational therapies suggests CDK4 inhibitor resistance due to overexpression of cyclin E1 or E2, can be overcome by combining CDK2 inhibitors such as SNS-032.",
+      "evidenceLevel": "D",
+      "evidenceRating": 3,
+      "url": "https://identifiers.org/civic.eid:10182"
+    },
+    {
+      "status": "ACCEPTED",
+      "evidenceType": "PREDICTIVE",
+      "evidenceDirection": "SUPPORTS",
+      "significance": "RESISTANCE",
+      "molecularProfile": {
+        "variants": [
+          {
+            "name": "M695FS*26",
+            "feature": {
+              "name": "RB1"
+            }
+          }
+        ]
+      },
+      "disease": {
+        "displayName": "Estrogen-receptor Positive Breast Cancer"
+      },
+      "therapies": [
+        {
+          "name": "Palbociclib"
+        }
+      ],
+      "variantOrigin": "SOMATIC",
+      "description": "Preclinical study in breast cancer cell lines treated with CDK4/6 inhibitor palbociclib. Palbociclib-resistant xenografts from one cell line (PDX244) were developed in-vivo. In resistant xenografts, western blot analysis showed a decrease of pRb protein levels in 4 of 7 CDK4/6-acquired resistant tumors and a sustained expression of the E2F target cyclin E2, in contrast to CDK4/6 inhibitor-sensitive PDX244. Genomic characterization of PDX244LR1 showed the acquisition of an RB1 frameshift mutation (RB1 p.M695fs*26).",
+      "evidenceLevel": "D",
+      "evidenceRating": 2,
+      "url": "https://identifiers.org/civic.eid:1630"
+    }
+  ]
+}', annotations=None, meta=None)] structuredContent=None isError=False
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Neoplasms", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Neoplasm", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Serous Carcinoma", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Clear Cell Carcinoma", "significance": "RESISTANCE"}
+Invoking MCP tool get_variant_evidence with input {"therapyName": "Palbociclib", "diseaseName": "Ovarian Endometrioid Carcinoma", "significance": "RESISTANCE"}
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+MCP tool get_variant_evidence returned meta=None content=[TextContent(type='text', text='{
+  "Field Descriptions": "evidenceType: Category describing the type of clinical or biological evidence (e.g., predictive, diagnostic).\
+evidenceDirection: Indicates whether the evidence supports or refutes the association.\
+significance: The clinical relevance of the evidence.\
+description: Detailed summary of the evidence from CIViC curators.\
+evidenceLevel: Describes the robustness of the study type. A - Validated association, B - Clinical evidence, C - Case study, D - Preclinical evidence, and E - Inferential association\
+evidenceRating: Quality score assigned to the evidence by curators (scored 1-5).\
+url: Direct link to the CIViC record for this evidence item.\
+When returning information to users you MUST cite URLs used for specific information.",
+  "API Results": []
+}', annotations=None, meta=None)] structuredContent=None isError=False
+### LLM OUTPUT ###
+CCNE1
