@@ -20,48 +20,114 @@ function normalizeStr(s: string): string {
     .trim()
 }
 
-/**
- * Map a free‑form name to its primary alias via fuzzy matching.
- *
- * @param name      Input string (may be undefined or null)
- * @param lookup    Record<primary, aliases[]>
- * @param threshold Minimum similarity (0–1) to accept a match
- * @returns         The matched primary string, or undefined if below threshold or name missing
- */
-export function normalizeEntity(
-  name: string | undefined | null,
-  lookup: Record<string, string[]>,
-  threshold: number = 0.7
-): string | undefined {
-  if (!name) {
-    return undefined
-  }
+type AliasIndex = {
+  aliasToPrimary: Record<string, string>;
+  candidates: string[];
+};
 
-  const qNorm = normalizeStr(name)
+function buildAliasIndex(lookup: Record<string, string[]>): AliasIndex {
+  const aliasToPrimary: Record<string, string> = {};
 
-  // Build a map from normalized‑alias → primary
-  const aliasToPrimary: Record<string, string> = {}
   for (const [primary, aliases] of Object.entries(lookup)) {
-    aliasToPrimary[normalizeStr(primary)] = primary
+    aliasToPrimary[normalizeStr(primary)] = primary;
     for (const alias of aliases) {
-      aliasToPrimary[normalizeStr(alias)] = primary
+      aliasToPrimary[normalizeStr(alias)] = primary;
     }
   }
 
-  const candidates = Object.keys(aliasToPrimary)
-  const { bestMatch } = findBestMatch(qNorm, candidates)
+  return { aliasToPrimary, candidates: Object.keys(aliasToPrimary) };
+}
+
+let GENE_INDEX: AliasIndex | undefined;
+let DRUG_INDEX: AliasIndex | undefined;
+
+function getGeneIndex() {
+  return (GENE_INDEX ??= buildAliasIndex(dGeneMap));
+}
+function getDrugIndex() {
+  return (DRUG_INDEX ??= buildAliasIndex(dDrugMap));
+}
+
+export function normalizeEntityFast(
+  name: string | undefined | null,
+  index: AliasIndex,
+  threshold = 0.7
+): string | undefined {
+  if (!name) return undefined;
+
+  const qNorm = normalizeStr(name);
+  const { bestMatch } = findBestMatch(qNorm, index.candidates);
 
   return bestMatch.rating >= threshold
-    ? aliasToPrimary[bestMatch.target]
-    : undefined
+    ? index.aliasToPrimary[bestMatch.target]
+    : undefined;
 }
+
+// /**
+//  * Map a free‑form name to its primary alias via fuzzy matching.
+//  *
+//  * @param name      Input string (may be undefined or null)
+//  * @param lookup    Record<primary, aliases[]>
+//  * @param threshold Minimum similarity (0–1) to accept a match
+//  * @returns         The matched primary string, or undefined if below threshold or name missing
+//  */
+// export function normalizeEntity(
+//   name: string | undefined | null,
+//   lookup: Record<string, string[]>,
+//   threshold: number = 0.7
+// ): string | undefined {
+//   if (!name) {
+//     return undefined
+//   }
+
+//   const qNorm = normalizeStr(name)
+
+//   // Build a map from normalized‑alias → primary
+//   const aliasToPrimary: Record<string, string> = {}
+//   for (const [primary, aliases] of Object.entries(lookup)) {
+//     aliasToPrimary[normalizeStr(primary)] = primary
+//     for (const alias of aliases) {
+//       aliasToPrimary[normalizeStr(alias)] = primary
+//     }
+//   }
+
+//   const candidates = Object.keys(aliasToPrimary)
+//   const { bestMatch } = findBestMatch(qNorm, candidates)
+
+//   return bestMatch.rating >= threshold
+//     ? aliasToPrimary[bestMatch.target]
+//     : undefined
+// }
+
+type DrugInfoNode = {
+  name: string;
+  conceptId?: string;
+  approved?: boolean | null;
+  immunotherapy?: boolean | null;
+  antiNeoplastic?: boolean | null;
+  drugAttributes?: { name: string; value: string }[];
+  drugApprovalRatings?: {
+    rating?: number | null;
+    source?: {
+      sourceDbName?: string;
+      sourceTrustLevel?: { level?: string };
+    };
+  }[];
+};
 
 export type InteractionType = { type?: string; directionality?: string };
 export type Interaction = {
   interactionScore?: number | null;
   interactionTypes?: InteractionType[];
+
   gene?: { name?: string | null } | null;
   drug?: { name?: string | null; approved?: boolean | null } | null;
+
+  /** Only PubMed URLs — no raw pmids */
+  pmidUrls?: string[];
+
+  /** List of source database names */
+  sourceDbNames?: string[];
 };
 export type DrugNode = { name: string; interactions: Interaction[] };
 
@@ -73,6 +139,9 @@ export interface GeneNode {
   /** Any other fields returned by the API. */
   [key: string]: unknown;
 }
+
+type NodeWithInteractions = { name: string; interactions?: Interaction[] };
+
 
 /**
  * Return up to N interactions with:
@@ -105,16 +174,20 @@ export function filterInteractionScore(
 }
 
 /** Exact (case-insensitive) match wins; otherwise pick the node that contains the term and has the most interactions. */
-export function findBestNode(nodes: DrugNode[], term: string): DrugNode | undefined {
+export function findBestNode<T extends NodeWithInteractions>(
+  nodes: T[],
+  term: string
+): T | undefined {
   const t = term.toLowerCase();
 
   // 1) exact match first
   const exact = nodes.find(n => n.name.toLowerCase() === t);
   if (exact) return exact;
 
-  // 2) longest node by interactions among substring matches
-  let best: DrugNode | undefined;
+  // 2) most interactions among substring matches
+  let best: T | undefined;
   let bestLen = -1;
+
   for (const n of nodes) {
     if (n.name.toLowerCase().includes(t)) {
       const L = n.interactions?.length ?? 0;
@@ -124,6 +197,7 @@ export function findBestNode(nodes: DrugNode[], term: string): DrugNode | undefi
       }
     }
   }
+
   return best;
 }
 
@@ -172,13 +246,13 @@ export function filterAndSort(interactions: Interaction[], N = 20): Interaction[
  *  - apply filterAndSort per name with that budget
  * Returns map: requested name → filtered interactions[]
  */
-export function selectNodes(
-  nodes: DrugNode[],
+export function selectNodes<T extends NodeWithInteractions>(
+  nodes: T[],
   normalizedNames: string[],
   totalBudget: number
 ): Record<string, Interaction[]> {
   const counts: Record<string, number> = {};
-  const chosen: Record<string, DrugNode> = {};
+  const chosen: Record<string, T> = {};
 
   for (const name of normalizedNames) {
     const node = findBestNode(nodes, name);
@@ -195,17 +269,52 @@ export function selectNodes(
     const N = allocations[name] ?? 0;
     out[name] = filterAndSort(node?.interactions ?? [], N);
   }
+
   return out;
 }
+
+function convertNodesPMID(
+  nodes: Record<string, Interaction[]>
+): Record<string, Interaction[]> {
+  const base = "https://pubmed.ncbi.nlm.nih.gov/";
+
+  const out: Record<string, Interaction[]> = {};
+
+  for (const [key, interactions] of Object.entries(nodes)) {
+    out[key] = interactions.map(interaction => {
+      // treat publications/sources as untyped
+      const raw = interaction as any;
+
+      const pmidUrls =
+        (raw.publications ?? [])
+          .filter((p: any) => p?.pmid)
+          .map((p: any) => `${base}${p.pmid}/`);
+
+      // remove publications
+      const { publications, ...rest } = raw;
+
+      // return only allowed Interaction fields plus new URL fields
+      return {
+        ...rest,
+        pmidUrls,
+      } as Interaction & {
+        pmidUrls: string[];
+      };
+    });
+  }
+
+  return out;
+}
+
 
 // ========================================
 // API CONFIGURATION - Customize for your GraphQL API
 // ========================================
 
 export const API_CONFIG = {
-  name:        "DGIdbExplorer",
+  name:        "DGIdb_MCP",
   version:     "0.1.0",
-  description: "Fixed‑schema MCP tools for the DGI GraphQL API",
+  description: "Fixed-schema MCP tools for the DGIdb GraphQL API",
   mcpSpecVersion: "2025-06-18",
   features: {
     structuredToolOutput: true,
@@ -225,11 +334,97 @@ export const API_CONFIG = {
  *  ---------------------------------------------------------------- */
 
 export const tools = {
-  getGeneInteractionsForDrug: {
-    name: "get_gene_interactions_for_drug_list",
+  getDrugInfo: {
+    name: "get_drug_info",
     description:
-      "Return up to 100 total gene interactions across 1+ drugs; approved first, then highest interaction score.",
-    inputSchema: {drugName: z.string()},
+      "Gets drug info including approval, if used in immunotherapy, and other drug attributes for a list of drugs.",
+    inputSchema: {drugNames: z.array(z.string()).min(1).max(25).describe("Drug names only")},
+    annotations: {
+      destructive: false,
+      idempotent:  true,
+      cacheable:   false,
+      world_interaction: "open",
+      side_effects: ["external_api_calls"],
+      resource_usage: "network_io_heavy",
+    },
+    async handler (
+  		{ drugNames }: { drugNames: string[] } ) {
+
+    const query = /* GraphQL */ `
+          query drugs_info($names: [String!]) {
+            drugs(names: $names) {
+                nodes {
+                    name
+                    conceptId
+                    approved
+                    immunotherapy
+                    antiNeoplastic
+                    drugAttributes {
+                        name
+                        value
+                        }
+                    drugApprovalRatings {
+                        rating
+                        source {
+                            sourceDbName
+                            sourceTrustLevel {
+                                level
+                            }
+                        }
+                    }
+                }
+            }
+        }	
+      `;
+    
+      const rawNames = (drugNames ?? [])
+        .map(s => (s ?? "").trim())
+        .filter(Boolean);
+
+
+      const normalizedNames = rawNames.map(raw =>
+        normalizeEntityFast(raw, getDrugIndex(), 0.7) || raw
+      );
+
+      const res = await fetch("https://dgidb.org/api/graphql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
+        body: JSON.stringify({ query, variables: { names: normalizedNames } })
+      }).then(r => r.json()) as {
+        data?: { drugs?: { nodes?: DrugInfoNode[] } };
+        errors?: unknown[];
+      };
+
+      if (!res.data?.drugs?.nodes) {
+        return {
+          isError: true,
+          content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
+        };
+      }
+
+      const nodes = res.data.drugs.nodes;
+      if (!nodes.length) {
+        return {
+          isError: true,
+          content: [{ type: "text" as const, text: `No drug nodes found for: ${normalizedNames.join(", ")}` }]
+        };
+      }
+
+
+      return {
+        isError: false,
+        content: [{ type: "text" as const, text: JSON.stringify(nodes, null, 2) }]
+      };
+    
+    
+    },
+  },
+
+  getGeneInfo: {
+    name: "get_gene_info",
+    description:
+      "Gets gene category info for a list of genes.",
+    inputSchema: {geneNames: z.array(z.string()).min(1).max(25).describe("HGNC gene symbols only")},
     annotations: {
       destructive: false,
       idempotent:  true,
@@ -240,7 +435,87 @@ export const tools = {
     },
 
     async handler(
-  		{ drugName }: { drugName: string }  // <- matches schema
+        { geneNames }: { geneNames: string[] }  
+    ) {
+
+    const query = /* GraphQL */ `
+        query gene_category($names: [String!]){
+        genes(names: $names) {
+            nodes {
+                name
+                longName
+                conceptId
+                geneCategoriesWithSources {
+                  name
+                  sourceNames
+                }
+            }
+        }
+    }	
+    `;
+
+    const rawNames = (geneNames ?? [])
+      .map(s => (s ?? "").trim())
+      .filter(Boolean);
+
+    //const rawNames = geneNames.split(",").map(s => s.trim()).filter(Boolean);
+    const normalizedNames = rawNames.map(raw =>
+      normalizeEntityFast(raw, getGeneIndex(), 0.7) || raw
+    );
+
+    const res = await fetch("https://dgidb.org/api/graphql", {
+				method: "POST",
+				headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
+				body: JSON.stringify({ query, variables: { names: normalizedNames } })
+			}).then(r => r.json()) as {
+        data?: { genes?: { nodes?: Array<{
+          name: string;
+          longName?: string;
+          conceptId?: string;
+          geneCategoriesWithSources?: Array<{ name: string; sourceNames: string[] }>;
+        }> } };
+        errors?: unknown[];
+      };
+
+    if (!res.data?.genes?.nodes) {
+        return {
+          isError: true,
+          content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
+        };
+      }
+
+      const nodes = res.data.genes.nodes;
+      if (!nodes.length) {
+        return {
+          isError: true,
+          content: [{ type: "text" as const, text: `No gene nodes found for: ${normalizedNames.join(", ")}` }]
+        };
+      }
+
+      return {
+        isError: false,
+        content: [{ type: "text" as const, text: JSON.stringify(nodes, null, 2) }]
+      };
+    },
+  },
+
+
+  getGeneInteractionsForDrug: {
+    name: "get_gene_interactions_for_drug_list",
+    description:
+      "Use this when the user provides drug(s) and asks for genes that interact. Only the top ranked interactions will be returned.",
+    inputSchema: {drugNames: z.array(z.string()).min(1).max(25).describe("Drug names only")},
+    annotations: {
+      destructive: false,
+      idempotent:  true,
+      cacheable:   false,
+      world_interaction: "open",
+      side_effects: ["external_api_calls"],
+      resource_usage: "network_io_heavy",
+    },
+
+    async handler(
+  		{ drugNames }: { drugNames: string[] }  // <- matches schema
 	) {
 
 		const query = /* GraphQL */ `
@@ -257,18 +532,29 @@ export const tools = {
                       type
                       directionality
                   }
+                  publications {
+                    pmid
+                  }
+                  sources {
+                    sourceDbName
+                    baseUrl
+                  }
               }
           }
         }
       }`;
 
+    const rawNames = (drugNames ?? [])
+      .map(s => (s ?? "").trim())
+      .filter(Boolean);
 
-    const rawNames = drugName.split(",").map(s => s.trim()).filter(Boolean);
-    // Call normalizeEntity(rawName, dDrugMap, 0.7). Fallback to raw if it returns falsy.
+
+    // const rawNames = drugNames.split(",").map(s => s.trim()).filter(Boolean);
+    // Call normalizeEntity(rawName, dDrugMap, 0.7). Fallback to raw if it returns false.
     const normalizedNames = rawNames.map(raw =>
-      normalizeEntity(raw, dDrugMap, 0.7) || raw
+      normalizeEntityFast(raw, getDrugIndex(), 0.7) || raw
     );
-    const totalBudget = normalizedNames.length === 1 ? 40 : 100;
+    const totalBudget = normalizedNames.length === 1 ? 15 : 100;
 
     const res = await fetch("https://dgidb.org/api/graphql", {
       method: "POST",
@@ -294,7 +580,20 @@ export const tools = {
       };
     }
 
-    const payload = selectNodes(nodes, normalizedNames, totalBudget);
+    const instructions =
+          "Interaction Score: Scoring metric based on the evidence supporting an interaction.\n" +
+          "Interaction Type:  Nature of the association between a particular drug and gene.\n" +
+          "Interaction Direction: Describes the effect of the interaction on the biological activity of the gene.\n" +
+          "PMID url: Direct link to the PubMed publication supporting this interaction.\n" +
+          "The returned list of interactions is limited to the top 15 and does not include all of them.\n" +
+          "When returning information to users you MUST cite URLs used for specific information. Always cite the PubMed IDs and Database Sources as links";
+
+    const selected_nodes = selectNodes(nodes, normalizedNames, totalBudget)
+
+    const payload = {
+        instructions,
+        "API Results": convertNodesPMID(selected_nodes),
+      };
 
     return {
       isError: false,
@@ -306,8 +605,8 @@ export const tools = {
   getDrugInteractionsForGene: {
     name: "get_drug_interactions_for_gene_list",
     description:
-      "Return up to 100 drugs that interact with the provided gene list",
-    inputSchema: {geneName: z.string()},
+      "Use this when the user provides gene(s) and asks for drugs that interact. Only the top ranked interactions will be returned. Drugs will be first sorted by FDA approval, then Interaction Score.",
+    inputSchema: {geneNames: z.array(z.string()).min(1).max(25).describe("HGNC gene symbols only")},
     annotations: {
       destructive: false,
       idempotent:  true,
@@ -318,8 +617,8 @@ export const tools = {
     },
 
     async handler(
-  		{ geneName }: { geneName: string }  // <- matches schema
-	) {
+  		{ geneNames }: { geneNames: string[] }  // <- matches schema
+	  ) {
 
 		const query = /* GraphQL */ `
       query genes($names: [String!]) {
@@ -336,55 +635,78 @@ export const tools = {
                           type
                           directionality
                       }
-
+                      publications {
+                        pmid
+                      }
+                      sources {
+                        sourceDbName
+                        baseUrl
+                      }
                   }
               }
           }
       }`;
 
-      const rawNames = geneName.split(",").map(s => s.trim()).filter(Boolean);
+      const rawNames = (geneNames ?? [])
+        .map(s => (s ?? "").trim())
+        .filter(Boolean);
+
+      //const rawNames = geneNames.split(",").map(s => s.trim()).filter(Boolean);
       const normalizedNames = rawNames.map(raw =>
-        normalizeEntity(raw, dGeneMap, 0.7) || raw
+        normalizeEntityFast(raw, getGeneIndex(), 0.7) || raw
       );
-      const totalBudget = normalizedNames.length === 1 ? 40 : 100;
+
+      const totalBudget = normalizedNames.length === 1 ? 15 : 100;
 
 			const res = await fetch("https://dgidb.org/api/graphql", {
 				method: "POST",
 				headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
-				body: JSON.stringify({ query, variables: { name: geneName } })
+				body: JSON.stringify({ query, variables: { names: normalizedNames } })
 			}).then(r => r.json()) as {
 				data?: { genes?: { nodes: { name: string; interactions: any[] }[] } };
 				errors?: unknown[];
 			};
 
-		// ✅ If no data, wrap in a content-based return for MCP compliance
-		if (!res.data?.genes) {
-			return {
-			isError: true,
-			content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
-			};
-		}
+    const instructions =
+          "Interaction Score: Scoring metric based on the evidence supporting an interaction.\n" +
+          "Interaction Type:  Nature of the association between a particular drug and gene.\n" +
+          "Interaction Direction: Describes the effect of the interaction on the biological activity of the gene.\n" +
+          "PMID url: Direct link to the PubMed publication supporting this interaction.\n" +
+          "The returned list of interactions is limited to the top 15 and does not include all of them.\n" +
+          "When returning information to users you MUST cite URLs used for specific information. Always cite the PubMed IDs and Database Sources as links";
 
-		const nodes = res.data.genes.nodes ?? [];
-
-    if (!nodes.length) {
-      return {
+      // If no data, wrap in a content-based return for MCP compliance
+      if (!res.data?.genes) {
+        return {
         isError: true,
-        content: [{ type: "text" as const, text: `No gene nodes found for: ${normalizedNames.join(", ")}` }]
+        content: [{ type: "text" as const, text: JSON.stringify(res, null, 2) }]
+        };
+      }
+
+      const nodes = res.data.genes.nodes ?? [];
+
+      if (!nodes.length) {
+        return {
+          isError: true,
+          content: [{ type: "text" as const, text: `No gene nodes found for: ${normalizedNames.join(", ")}` }]
+        };
+      }
+
+      const selected_nodes = selectNodes(nodes, normalizedNames, totalBudget)
+
+      const payload = {
+          instructions,
+          "API Results": convertNodesPMID(selected_nodes),
+        };
+
+      return {
+        isError: false,
+        content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }]
       };
-    }
-
-    const payload = selectNodes(nodes, normalizedNames, totalBudget);
-
-    return {
-      isError: false,
-      content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }]
-    };
-	},
-	},
+    },
+    },
 
 } as const;
-
 
 
 // -------------------------------------------------------------
@@ -395,30 +717,19 @@ class DgidbMCP extends McpAgent {
     name:        API_CONFIG.name,
     version:     API_CONFIG.version,
     description: API_CONFIG.description,},
-    
     {
-    instructions: `
-	Use the tools to find drug-gene interactions with the Drug-Gene Interaction Database (DGIdb).
-    `,
-  });
+      instructions: `Use the tools to find drug-gene interactions with the Drug-Gene Interaction Database (DGIdb).`,
+    });
 
   async init() {
     /* register fixed-schema tools */
-    const { getGeneInteractionsForDrug, getDrugInteractionsForGene } = tools;
+    const { getGeneInteractionsForDrug, getDrugInteractionsForGene, getDrugInfo, getGeneInfo } = tools;
 
-    this.server.tool(
-      getGeneInteractionsForDrug.name,
-      getGeneInteractionsForDrug.description,
-      getGeneInteractionsForDrug.inputSchema,
-      getGeneInteractionsForDrug.handler,
-    );
+    this.server.tool(getDrugInfo.name, getDrugInfo.description, getDrugInfo.inputSchema, getDrugInfo.handler);
+    this.server.tool(getGeneInfo.name, getGeneInfo.description, getGeneInfo.inputSchema, getGeneInfo.handler);
 
-    this.server.tool(
-      getDrugInteractionsForGene.name,
-      getDrugInteractionsForGene.description,
-      getDrugInteractionsForGene.inputSchema,
-      getDrugInteractionsForGene.handler,
-    );
+    this.server.tool(getGeneInteractionsForDrug.name, getGeneInteractionsForDrug.description, getGeneInteractionsForDrug.inputSchema, getGeneInteractionsForDrug.handler);
+    this.server.tool(getDrugInteractionsForGene.name, getDrugInteractionsForGene.description, getDrugInteractionsForGene.inputSchema, getDrugInteractionsForGene.handler);
   }
 }
 
@@ -434,7 +745,7 @@ interface ExecutionContext {
 export default {
   async fetch(
     request: Request,
-    env: Env,               // keep the typed Env like before
+    env: Env,
     ctx: ExecutionContext
   ): Promise<Response> {
     const url = new URL(request.url);
@@ -442,16 +753,14 @@ export default {
     console.log(Object.keys(env));
 
     /* ────────────────────────────────────────────────
-       SSE transport (Claude Desktop, Cursor, etc.)
+       NEW: Streamable HTTP transport (/mcp)
     ─────────────────────────────────────────────────*/
-    if (url.pathname === "/sse" || url.pathname.startsWith("/sse/")) {
-      // MCP 2025-06-18: client may send its protocol version
+    if (url.pathname === "/mcp" || url.pathname.startsWith("/mcp/")) {
       const protocolVersion = request.headers.get("MCP-Protocol-Version");
 
-      // @ts-ignore – serveSSE helper is mixed-in by DgidbMCP
-      const response = await DgidbMCP.serveSSE("/sse").fetch(request, env, ctx);
+      // @ts-ignore – serve helper is mixed-in by DgidbMCP (Streamable HTTP)
+      const response = await DgidbMCP.serve("/mcp").fetch(request, env, ctx);
 
-      // Mirror the header back so the client sees what the server supports
       if (protocolVersion && response instanceof Response) {
         const headers = new Headers(response.headers);
         headers.set("MCP-Protocol-Version", protocolVersion);
@@ -461,16 +770,37 @@ export default {
           headers
         });
       }
+      return response;
+    }
 
-      return response; // unchanged fallback
+    /* ────────────────────────────────────────────────
+       Legacy SSE transport (kept for now)
+    ─────────────────────────────────────────────────*/
+    if (url.pathname === "/sse" || url.pathname.startsWith("/sse/")) {
+      const protocolVersion = request.headers.get("MCP-Protocol-Version");
+
+      // @ts-ignore – serveSSE helper is mixed-in by DgidbMCP (SSE)
+      const response = await DgidbMCP.serveSSE("/sse").fetch(request, env, ctx);
+
+      if (protocolVersion && response instanceof Response) {
+        const headers = new Headers(response.headers);
+        headers.set("MCP-Protocol-Version", protocolVersion);
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers
+        });
+      }
+      return response;
     }
 
     return new Response(
-      `${API_CONFIG.name} – MCP Server ${API_CONFIG.version}. Use /sse for MCP transport.`,
+      `${API_CONFIG.name} – MCP Server ${API_CONFIG.version}. Use /mcp (Streamable HTTP) or /sse (legacy).`,
       { status: 200, headers: { "Content-Type": "text/plain" } }
     );
   }
 };
+
 
 // Export the class for tests if you like
 export { DgidbMCP };

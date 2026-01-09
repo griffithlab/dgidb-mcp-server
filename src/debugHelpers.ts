@@ -97,7 +97,6 @@ const nodes: GeneNode[] = [
         interactionScore: 5.361471203345,
         interactionTypes: [{ type: "inhibitor", directionality: "INHIBITORY" }],
       },
-      // …add more items if you’d like to see truncation to top 10
     ],
   },
 ];
