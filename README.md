@@ -1,78 +1,79 @@
-# Interacting with the Drug Gene Interaction Database (DGIdb) via Claude Desktop
+# DGIdb MCP Server
 
-## License and Citation
+This is a Cloudflare Workers-based Model Context Protocol (MCP) server that provides tools for querying the DGIdb (Drug Gene Interaction Database) API. 
 
-This project is available under the MIT License with an Academic Citation Requirement. This means you can freely use, modify, and distribute the code, but any academic or scientific publication that uses this software must provide appropriate attribution.
+DGIdb streamlines the search for druggable therapeutic targets through the aggregation, categorization, and curation of drug and gene data from publications and expert resources. 
 
-### For academic/research use:
-If you use this software in a research project that leads to a publication, presentation, or report, you **must** cite this work according to the format provided in [CITATION.md](CITATION.md).
+## Using With Claude Desktop
 
-### For commercial/non-academic use:
-Commercial and non-academic use follows the standard MIT License terms without the citation requirement.
+Example video taken from CIViC MCP
 
-By using this software, you agree to these terms. See [LICENSE.md](LICENSE.md) for the complete license text.This guide helps scientists and researchers use the Drug Gene Interaction Database (DGIdb) through an application called Claude Desktop. This setup allows you to ask questions about drug-gene interactions in plain language and get results directly within Claude.
+https://github.com/user-attachments/assets/5890f79a-e2fc-49f6-b5f4-ef191d07872d
 
-## What is this?
+Install Node.js (https://nodejs.org/)
 
-*   **DGIdb:** A comprehensive database containing information about how drugs interact with genes. It gathers data from many different sources.
-*   **MCP Server:** A piece of software that acts as a bridge. This specific server connects to the DGIdb API. "MCP" stands for Model Context Protocol, a way for AI models (like the one in Claude) to use tools.
-*   **Claude Desktop:** An application where you can interact with an AI assistant. By configuring it correctly, Claude can use this MCP Server to fetch data from DGIdb for you.
+Click "LTS" (Recommended for Most Users) — this gives you Node.js and npx
+Download and install it like any normal app
 
-Essentially, this server gives Claude the "tool" it needs to look up information in the DGIdb.
+Once installed:
+On Windows: Open “Command Prompt” or “PowerShell”
+On macOS: Open “Terminal”
 
-## How to Use This with Claude Desktop
+Then run:
+```bash
+node -v
+npx -v
+```
 
-If this DGIdb MCP Server has been set up and deployed (e.g., by a technical colleague), you can connect your Claude Desktop application to it. This allows you to ask Claude questions like:
+Confirm that both give versions.
 
-*   "What are the interactions for the drug Imatinib?"
-*   "Find genes that interact with Dovitinib."
-*   "Show me drug attributes for Trametinib."
-
-Claude will then use this server to find the answers in the DGIdb and present them to you.
-
-### Configuration for Claude Desktop
-
-Your Claude Desktop application needs to be told where to find this DGIdb server. This is usually done by editing a configuration file for Claude Desktop.
-
-A technical user or administrator would typically handle the deployment of the server and provide you with a specific URL (web address). For example, the server might be available at an address like: `https://dgidb-mcp-server.your-organization.workers.dev/sse`.
-
-The configuration in Claude Desktop would then look something like this. You would add the "dgidb" section within the `mcpServers` part of your Claude Desktop configuration file:
+## Accessing DGIdb via MCP
+Add this configuration to your `claude_desktop_config.json` file:
 
 ```json
 {
   "mcpServers": {
-    // ... (other server configurations might be here) ...
-
-    "dgidb": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://dgidb-mcp-server.quentincody.workers.dev/sse" // <-- This URL needs to be the actual address of YOUR deployed DGIdb MCP server
-      ]
+    "lars-dgidb-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://dgidb-mcp-server.larscivic.workers.dev/mcp"
+        ]
     }
-
-    // ... (other server configurations might be here) ...
   }
 }
 ```
 
-**Important:**
-*   The URL `https://dgidb-mcp-server.quentincody.workers.dev/sse` in the example above is illustrative. You will need to replace it with the actual URL where *your* instance of the DGIdb MCP server is running.
-*   After updating the configuration, you usually need to restart Claude Desktop for the changes to take effect.
+## Joint Access to DGIdb and CIViC via MCP
+Add this configuration to your `claude_desktop_config.json` file:
 
-Once configured, the DGIdb tool should become available within Claude, allowing you to query the database easily.
+```json
+{
+"mcpServers": {
+    "lars-civic-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://civic-mcp-server-v2.larscivic.workers.dev/mcp"
+        ]
+      },
 
-## For Technical Users: Deploying the Server
+    "lars-dgidb-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://dgidb-mcp-server.larscivic.workers.dev/mcp"
+        ]
+      }
+  }
+}
+```
 
-If you are a technical user and need to deploy this server (e.g., on Cloudflare Workers):
+## Usage
 
-1.  **Get Started:**
-    You can deploy this server to Cloudflare Workers. Refer to the original, more technical README for deployment buttons and command-line instructions (often involving `npm create cloudflare@latest`).
+Once configured, restart Claude Desktop. The server provides 4 main tools:
 
-2.  **Customization:**
-    The server code is in `src/index.ts`. This file defines how the server connects to DGIdb and what "tools" it provides to MCP clients.
-
-3.  **Connecting to Other Clients (like AI Playground):**
-    Once deployed, you can also connect to your MCP server from other clients like the Cloudflare AI Playground by providing its URL (e.g., `https://your-dgidb-server-name.your-account.workers.dev/sse`).
-
-This DGIdb MCP Server uses the publicly available DGIdb GraphQL API at `https://dgidb.org/api/graphql`.
+1. **`get_drug_info`**: Gets drug info including approval, if used in immunotherapy, and other drug attributes for a list of drugs.
+2. **`get_gene_info`**: Gets gene category info for a list of genes.
+3. **`get_drug_interactions_for_gene_list`**: Gets drugs that interact with a list of genes.
+4. **`get_gene_interactions_for_drug_list`**: Gets genes that interact with a list of drugs.
