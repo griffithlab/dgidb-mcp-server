@@ -1,78 +1,172 @@
-# Interacting with the Drug Gene Interaction Database (DGIdb) via Claude Desktop
+# DGIdb MCP Server
 
-## License and Citation
+This is a Cloudflare Workers-based Model Context Protocol (MCP) server that provides tools for querying the DGIdb (Drug Gene Interaction Database) API. 
 
-This project is available under the MIT License with an Academic Citation Requirement. This means you can freely use, modify, and distribute the code, but any academic or scientific publication that uses this software must provide appropriate attribution.
+DGIdb streamlines the search for druggable therapeutic targets through the aggregation, categorization, and curation of drug and gene data from publications and expert resources. 
 
-### For academic/research use:
-If you use this software in a research project that leads to a publication, presentation, or report, you **must** cite this work according to the format provided in [CITATION.md](CITATION.md).
+## Example of DGIdb MCP Server on Claude Desktop
 
-### For commercial/non-academic use:
-Commercial and non-academic use follows the standard MIT License terms without the citation requirement.
+### User Prompt: 
+"What genes interact with the drug Ibrutinib according to DGIdb?"
 
-By using this software, you agree to these terms. See [LICENSE.md](LICENSE.md) for the complete license text.This guide helps scientists and researchers use the Drug Gene Interaction Database (DGIdb) through an application called Claude Desktop. This setup allows you to ask questions about drug-gene interactions in plain language and get results directly within Claude.
+<details>
+  <summary>Tool Called: <code>get_gene_interactions_for_drug_list</code></summary>
 
-## What is this?
+  <details>
+    <summary><b>Request</b></summary>
 
-*   **DGIdb:** A comprehensive database containing information about how drugs interact with genes. It gathers data from many different sources.
-*   **MCP Server:** A piece of software that acts as a bridge. This specific server connects to the DGIdb API. "MCP" stands for Model Context Protocol, a way for AI models (like the one in Claude) to use tools.
-*   **Claude Desktop:** An application where you can interact with an AI assistant. By configuring it correctly, Claude can use this MCP Server to fetch data from DGIdb for you.
+```json
+{
+  "drugNames": "Ibrutinib"
+}
+```
+</details> 
+<details> <summary><b>Response</b></summary>
+  
+```json
+{
+  "Instructions": "Interaction Score: Scoring metric based on the evidence supporting an interaction.
+                  Interaction Direction: Describes the effect of the interaction on the biological activity of the gene.
+                  Interaction Type:  Nature of the association between a particular drug and gene.
+                  When returning information to users you MUST cite URLs used for specific information."
 
-Essentially, this server gives Claude the "tool" it needs to look up information in the DGIdb.
+  "API Results": [
+    { "gene": "PLCG2",
+      "interactionScore": 4.61,
+      "interactionTypes": [],
+      "sources": ["CGI", "DoCM"],
+      "pmidUrls": ["https://pubmed.ncbi.nlm.nih.gov/24869598/"]},
 
-## How to Use This with Claude Desktop
+    { "gene": "MYD88",
+      "interactionScore": 1.0,
+      "interactionTypes": [],
+      "sources": ["CIViC", "PharmGKB", "CGI", "DoCM"],
+      "pmidUrls": []
+    },
+    { "gene": "BTK",
+      "interactionScore": 0.38,
+      "interactionTypes": [
+          {
+            "type": "inhibitor",
+            "directionality": "INHIBITORY"
+          }
+      ],
+      "sources": ["CIViC", "PharmGKB", "CGI", "DoCM", "TTD", "MyCancerGenome", "TdgClinicalTrial", "ChEMBL", "COSMIC"],
+      "pmidUrls": [
+          "https://pubmed.ncbi.nlm.nih.gov/25222877/",
+          "https://pubmed.ncbi.nlm.nih.gov/24869598/",
+          "https://pubmed.ncbi.nlm.nih.gov/27199251/"
+        ]
+    },
+    ...
+  ]
+}
+```
+  
+</details>
 
-If this DGIdb MCP Server has been set up and deployed (e.g., by a technical colleague), you can connect your Claude Desktop application to it. This allows you to ask Claude questions like:
+</details></details></details>
 
-*   "What are the interactions for the drug Imatinib?"
-*   "Find genes that interact with Dovitinib."
-*   "Show me drug attributes for Trametinib."
+### Claude Response: 
+<details>
+  <summary><b>Claude generated table of DGIdb interactions for Ibrutinib (top genes)</b></summary>
 
-Claude will then use this server to find the answers in the DGIdb and present them to you.
+| Gene     | Interaction Score | Type      | Direction  | Key Sources |
+|----------|-------------------:|-----------|------------|------------|
+| PLCG2    | 4.61               | —         | —          | CGI, DoCM • [PMID 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/) |
+| MYD88    | 1.54               | —         | —          | CGI, CIViC, PharmGKB |
+| BTK      | 0.38               | Inhibitor | Inhibitory | ChEMBL, CIViC, COSMIC • [PMID 25222877](https://pubmed.ncbi.nlm.nih.gov/25222877/), [PMID 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/) |
+| ENUR2    | 0.31               | Inhibitor | Inhibitory | GuideToPharmacology |
+| BMX      | 0.26               | —         | —          | TTD |
+| FKBP1AP3 | 0.17               | Inhibitor | Inhibitory | GuideToPharmacology |
+| SMARCA4  | 0.15               | —         | —          | CKB • [PMID 30455436](https://pubmed.ncbi.nlm.nih.gov/30455436/) |
+| EFNA1    | 0.14               | Inhibitor | Inhibitory | GuideToPharmacology |
+| EPS15    | 0.13               | Inhibitor | Inhibitory | GuideToPharmacology |
+| CSF3R    | 0.11               | —         | —          | CKB • [PMID 29977015](https://pubmed.ncbi.nlm.nih.gov/29977015/) |
+| TEC      | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
+| EEGV1    | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
+| EPHA8    | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
+| ENO2     | 0.08               | Inhibitor | Inhibitory | GuideToPharmacology |
+| LYN      | 0.08               | —         | —          | DTC • [PMID 25222877](https://pubmed.ncbi.nlm.nih.gov/25222877/) |
+</details>
 
-### Configuration for Claude Desktop
+BTK (Bruton's tyrosine kinase) is the primary therapeutic target—Ibrutinib is a covalent inhibitor of BTK, used to treat B-cell malignancies like CLL and mantle cell lymphoma
+PLCG2 and MYD88 have the highest interaction scores, reflecting their clinical relevance in resistance and response prediction
+Several other kinases (BMX, TEC, LYN) are off-target interactions typical of BTK inhibitors
 
-Your Claude Desktop application needs to be told where to find this DGIdb server. This is usually done by editing a configuration file for Claude Desktop.
+View the original chat here: https://claude.ai/share/8e9224cd-4927-4337-9a76-cc4ab8f95d93 
 
-A technical user or administrator would typically handle the deployment of the server and provide you with a specific URL (web address). For example, the server might be available at an address like: `https://dgidb-mcp-server.your-organization.workers.dev/sse`.
 
-The configuration in Claude Desktop would then look something like this. You would add the "dgidb" section within the `mcpServers` part of your Claude Desktop configuration file:
+## Configuring Claude Desktop
+
+Example video taken from CIViC MCP
+
+https://github.com/user-attachments/assets/5890f79a-e2fc-49f6-b5f4-ef191d07872d
+
+Install Node.js (https://nodejs.org/)
+
+Click "LTS" (Recommended for Most Users) — this gives you Node.js and npx
+Download and install it like any normal app
+
+Once installed:
+On Windows: Open “Command Prompt” or “PowerShell”
+On macOS: Open “Terminal”
+
+Then run:
+```bash
+node -v
+npx -v
+```
+
+Confirm that both give versions.
+
+## Accessing DGIdb via MCP
+Add this configuration to your `claude_desktop_config.json` file:
 
 ```json
 {
   "mcpServers": {
-    // ... (other server configurations might be here) ...
-
-    "dgidb": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://dgidb-mcp-server.quentincody.workers.dev/sse" // <-- This URL needs to be the actual address of YOUR deployed DGIdb MCP server
-      ]
+    "lars-dgidb-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://dgidb-mcp-server.larscivic.workers.dev/mcp"
+        ]
     }
-
-    // ... (other server configurations might be here) ...
   }
 }
 ```
 
-**Important:**
-*   The URL `https://dgidb-mcp-server.quentincody.workers.dev/sse` in the example above is illustrative. You will need to replace it with the actual URL where *your* instance of the DGIdb MCP server is running.
-*   After updating the configuration, you usually need to restart Claude Desktop for the changes to take effect.
+## Joint Access to DGIdb and CIViC via MCP
+Add this configuration to your `claude_desktop_config.json` file:
 
-Once configured, the DGIdb tool should become available within Claude, allowing you to query the database easily.
+```json
+{
+"mcpServers": {
+    "lars-civic-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://civic-mcp-server-v2.larscivic.workers.dev/mcp"
+        ]
+      },
 
-## For Technical Users: Deploying the Server
+    "lars-dgidb-mcp-server": {
+    "command": "npx",
+    "args": [
+          "mcp-remote",
+          "https://dgidb-mcp-server.larscivic.workers.dev/mcp"
+        ]
+      }
+  }
+}
+```
 
-If you are a technical user and need to deploy this server (e.g., on Cloudflare Workers):
+## Usage
 
-1.  **Get Started:**
-    You can deploy this server to Cloudflare Workers. Refer to the original, more technical README for deployment buttons and command-line instructions (often involving `npm create cloudflare@latest`).
+Once configured, restart Claude Desktop. The server provides 4 main tools:
 
-2.  **Customization:**
-    The server code is in `src/index.ts`. This file defines how the server connects to DGIdb and what "tools" it provides to MCP clients.
-
-3.  **Connecting to Other Clients (like AI Playground):**
-    Once deployed, you can also connect to your MCP server from other clients like the Cloudflare AI Playground by providing its URL (e.g., `https://your-dgidb-server-name.your-account.workers.dev/sse`).
-
-This DGIdb MCP Server uses the publicly available DGIdb GraphQL API at `https://dgidb.org/api/graphql`.
+1. **`get_drug_info`**: Gets drug info including approval, if used in immunotherapy, and other drug attributes for a list of drugs.
+2. **`get_gene_info`**: Gets gene category info for a list of genes.
+3. **`get_drug_interactions_for_gene_list`**: Gets drugs that interact with a list of genes.
+4. **`get_gene_interactions_for_drug_list`**: Gets genes that interact with a list of drugs.
