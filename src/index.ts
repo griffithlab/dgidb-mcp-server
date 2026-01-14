@@ -56,12 +56,34 @@ export function normalizeEntityFast(
   if (!name) return undefined;
 
   const qNorm = normalizeStr(name);
+
+  // Check for exact match first
+  if (qNorm in index.aliasToPrimary) {
+    return index.aliasToPrimary[qNorm];
+  }
+
+  // Fall back to fuzzy matching
   const { bestMatch } = findBestMatch(qNorm, index.candidates);
 
   return bestMatch.rating >= threshold
     ? index.aliasToPrimary[bestMatch.target]
     : undefined;
 }
+
+// export function normalizeEntityFast(
+//   name: string | undefined | null,
+//   index: AliasIndex,
+//   threshold = 0.7
+// ): string | undefined {
+//   if (!name) return undefined;
+
+//   const qNorm = normalizeStr(name);
+//   const { bestMatch } = findBestMatch(qNorm, index.candidates);
+
+//   return bestMatch.rating >= threshold
+//     ? index.aliasToPrimary[bestMatch.target]
+//     : undefined;
+// }
 
 // /**
 //  * Map a free‑form name to its primary alias via fuzzy matching.
@@ -439,7 +461,7 @@ export const tools = {
     ) {
 
     const query = /* GraphQL */ `
-        query gene_category($names: [String!]){
+    query gene_category($names: [String!]){
         genes(names: $names) {
             nodes {
                 name
@@ -463,10 +485,13 @@ export const tools = {
       normalizeEntityFast(raw, getGeneIndex(), 0.7) || raw
     );
 
+
+    const upperNames = normalizedNames.map(n => n.toUpperCase());
+
     const res = await fetch("https://dgidb.org/api/graphql", {
 				method: "POST",
 				headers: { "Content-Type": "application/json", ...API_CONFIG.headers },
-				body: JSON.stringify({ query, variables: { names: normalizedNames } })
+				body: JSON.stringify({ query, variables: { names: upperNames } })
 			}).then(r => r.json()) as {
         data?: { genes?: { nodes?: Array<{
           name: string;
@@ -488,7 +513,7 @@ export const tools = {
       if (!nodes.length) {
         return {
           isError: true,
-          content: [{ type: "text" as const, text: `No gene nodes found for: ${normalizedNames.join(", ")}` }]
+          content: [{ type: "text" as const, text: `No gene nodes found for: ${upperNames.join(", ")}. DEBUG normalizedNames: ${JSON.stringify(normalizedNames)}` }]
         };
       }
 
