@@ -7,9 +7,8 @@ DGIdb streamlines the search for druggable therapeutic targets through the aggre
 ## Example of DGIdb MCP Server on Claude Desktop
 
 ### User Prompt: 
-"What genes interact with the drug Ibrutinib according to DGIdb?"
+"What genes interact with the drug Ibrutinib and by what mechanism of interaction according to DGIdb?"
 
-<details>
   <summary>Tool Called: <code>get_gene_interactions_for_drug_list</code></summary>
 
   <details>
@@ -21,7 +20,7 @@ DGIdb streamlines the search for druggable therapeutic targets through the aggre
 }
 ```
 </details> 
-<details> <summary><b>Response</b></summary>
+<details> <summary><b>API Response</b></summary>
   
 ```json
 {
@@ -65,37 +64,46 @@ DGIdb streamlines the search for druggable therapeutic targets through the aggre
   
 </details>
 
-</details></details></details>
 
-### Claude Response: 
 <details>
-  <summary><b>Claude generated table of DGIdb interactions for Ibrutinib (top genes)</b></summary>
+    <summary><b>Claude Response</b></summary>
+  
 
-| Gene     | Interaction Score | Type      | Direction  | Key Sources |
-|----------|-------------------:|-----------|------------|------------|
-| PLCG2    | 4.61               | —         | —          | CGI, DoCM • [PMID 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/) |
-| MYD88    | 1.54               | —         | —          | CGI, CIViC, PharmGKB |
-| BTK      | 0.38               | Inhibitor | Inhibitory | ChEMBL, CIViC, COSMIC • [PMID 25222877](https://pubmed.ncbi.nlm.nih.gov/25222877/), [PMID 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/) |
-| ENUR2    | 0.31               | Inhibitor | Inhibitory | GuideToPharmacology |
-| BMX      | 0.26               | —         | —          | TTD |
-| FKBP1AP3 | 0.17               | Inhibitor | Inhibitory | GuideToPharmacology |
-| SMARCA4  | 0.15               | —         | —          | CKB • [PMID 30455436](https://pubmed.ncbi.nlm.nih.gov/30455436/) |
-| EFNA1    | 0.14               | Inhibitor | Inhibitory | GuideToPharmacology |
-| EPS15    | 0.13               | Inhibitor | Inhibitory | GuideToPharmacology |
-| CSF3R    | 0.11               | —         | —          | CKB • [PMID 29977015](https://pubmed.ncbi.nlm.nih.gov/29977015/) |
-| TEC      | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
-| EEGV1    | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
-| EPHA8    | 0.11               | Inhibitor | Inhibitory | GuideToPharmacology |
-| ENO2     | 0.08               | Inhibitor | Inhibitory | GuideToPharmacology |
-| LYN      | 0.08               | —         | —          | DTC • [PMID 25222877](https://pubmed.ncbi.nlm.nih.gov/25222877/) |
-</details>
+According to DGIdb, **Ibrutinib** interacts with multiple genes. Here are the top interactions ranked by interaction score:
 
-BTK (Bruton's tyrosine kinase) is the primary therapeutic target—Ibrutinib is a covalent inhibitor of BTK, used to treat B-cell malignancies like CLL and mantle cell lymphoma
-PLCG2 and MYD88 have the highest interaction scores, reflecting their clinical relevance in resistance and response prediction
-Several other kinases (BMX, TEC, LYN) are off-target interactions typical of BTK inhibitors
+**Primary Target**
+
+| Gene | Interaction Type | Direction | Score | Sources |
+|------|------------------|-----------|------:|---------|
+| BTK | Inhibitor | Inhibitory | 0.38 | CGI, CIViC, PharmGKB, ChEMBL, and others |
+
+BTK (Bruton's Tyrosine Kinase) is the **primary therapeutic target** of ibrutinib. The drug acts as an irreversible inhibitor, blocking BTK's enzymatic activity. Supporting publications: [PMID: 25222877](https://pubmed.ncbi.nlm.nih.gov/25222877/), [PMID: 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/), [PMID: 27199251](https://pubmed.ncbi.nlm.nih.gov/27199251/)
+
+**Resistance/Response Biomarkers**
+
+| Gene | Score | Sources |
+|------|------:|---------|
+| PLCG2 | 4.61 | CGI, DoCM — [PMID: 24869598](https://pubmed.ncbi.nlm.nih.gov/24869598/) |
+| MYD88 | 1.54 | CGI, CIViC, PharmGKB |
+
+PLCG2 and MYD88 are associated with ibrutinib resistance or response prediction rather than being direct drug targets.
+
+**Additional Inhibitory Targets**
+
+| Gene | Interaction Type | Score | Source |
+|------|------------------|------:|--------|
+| ENUR2 | Inhibitor | 0.31 | Guide to Pharmacology |
+| BMX | Not specified | 0.26 | TTD |
+| EFNA1 | Inhibitor | 0.14 | Guide to Pharmacology |
+| EPS15 | Inhibitor | 0.13 | Guide to Pharmacology |
+| TEC | Inhibitor | 0.11 | Guide to Pharmacology |
+| EPHA8 | Inhibitor | 0.11 | Guide to Pharmacology |
+
+Ibrutinib is known to have off-target kinase inhibition beyond BTK, which may contribute to both efficacy and side effects.
 
 View the original chat here: https://claude.ai/share/8e9224cd-4927-4337-9a76-cc4ab8f95d93 
 
+</details></details></details>
 
 ## Configuring Claude Desktop
 
