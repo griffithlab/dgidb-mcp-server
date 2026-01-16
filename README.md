@@ -101,7 +101,7 @@ PLCG2 and MYD88 are associated with ibrutinib resistance or response prediction 
 
 Ibrutinib is known to have off-target kinase inhibition beyond BTK, which may contribute to both efficacy and side effects.
 
-View the original chat here: https://claude.ai/share/8e9224cd-4927-4337-9a76-cc4ab8f95d93 
+View the original chat here: [https://claude.ai/share/8e9224cd-4927-4337-9a76-cc4ab8f95d93 ](https://claude.ai/share/1297b4d8-d55b-408d-9648-ef34e266f7ca)
 
 </details></details></details>
 
